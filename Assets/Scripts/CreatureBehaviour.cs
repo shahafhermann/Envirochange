@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.TextCore;
-using UnityEngine.SceneManagement;
 
 public class CreatureBehaviour : MonoBehaviour
 {
@@ -48,14 +47,6 @@ public class CreatureBehaviour : MonoBehaviour
         {
             Debug.Log("made contact!");
             isJumping = false;
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "floor")
-        {
-            SceneManager.LoadScene(0);
         }
     }
 }
