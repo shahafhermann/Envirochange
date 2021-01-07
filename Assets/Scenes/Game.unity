@@ -692,10 +692,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb88f8ec5971a492a9095d841fa462f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpHeight: 50
+  jumpHeight: 35
   groundSpeed: 5
-  midAir: 40
+  midAir: 3
   MAX_JUMPS_ROW: 2
+  num_of_jumps: 0
 --- !u!95 &1806985301
 Animator:
   serializedVersion: 3
