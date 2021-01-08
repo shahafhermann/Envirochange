@@ -12,18 +12,23 @@ public class CreatureBehaviour : MonoBehaviour
     public float groundSpeed = 5f;
     public float midAir = 5f;
     public int MAX_JUMPS_ROW = 2;
-    public int num_of_jumps;
+    private int num_of_jumps;
 
-    
+    private Animator animator;
+    private Vector2 _movement;
+
     // Start is called before the first frame update
     void Start()
     {
         creature_rigid = GetComponent<Rigidbody2D>();
         num_of_jumps = 0;
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
+        _movement.x = Input.GetAxisRaw("Horizontal");
+        
         float turnSpeed = groundSpeed;
         if (num_of_jumps > 0)
         {
@@ -46,7 +51,10 @@ public class CreatureBehaviour : MonoBehaviour
             creature_rigid.velocity = new Vector2(creature_rigid.velocity.x, 0f);
             creature_rigid.AddForce(Vector2.up * jumpHeight, ForceMode2D.Impulse);
         }
-
+        
+        // Animation control
+        animator.SetFloat("Horizontal", _movement.x);
+        animator.SetFloat("Speed", _movement.sqrMagnitude);
     }
     
 
