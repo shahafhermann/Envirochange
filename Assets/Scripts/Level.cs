@@ -6,4 +6,8 @@ using UnityEngine;
 [Serializable]
 public class Level {
     public Platform[] platforms;
+
+    public Platform[] GetPlatforms() {
+        return platforms;
+    }
 }
