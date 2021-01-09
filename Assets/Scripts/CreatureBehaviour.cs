@@ -6,8 +6,9 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.TextCore;
 
-public class CreatureBehaviour : MonoBehaviour
-{
+public class CreatureBehaviour : MonoBehaviour {
+    public GameManager gameManager;
+    
     private Rigidbody2D creature_rigid;
     public float jumpHeight = 0f;
     public float groundSpeed = 5f;
@@ -71,20 +72,7 @@ public class CreatureBehaviour : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.CompareTag("Goal")) {
             Debug.Log("Reached Goal!");
-            StartCoroutine(loadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+            gameManager.completeLevel();
         }
-    }
-
-    IEnumerator loadLevel(int levelIndex) {
-        // TODO here we can insert all kinds of operations that will happen after waiting a certain amount of time
-        
-        // background.SetTrigger("PlayTrigger");  // This was used to play some animation
-        // yield return new WaitForSeconds(animationTime);  // Then wait for it to end
-        
-        // transition.SetTrigger("Start");  // Same
-        // yield return new WaitForSeconds(transitionTime);  // Same
-        
-        yield return new WaitForSeconds(0f);
-        SceneManager.LoadScene(levelIndex);
     }
 }
