@@ -17,12 +17,16 @@ public class CreatureBehaviour : MonoBehaviour
     private Animator animator;
     private Vector2 _movement;
 
+    public Transform spawnPosition;
+    private TrailRenderer trail;
+
     // Start is called before the first frame update
     void Start()
     {
         creature_rigid = GetComponent<Rigidbody2D>();
         num_of_jumps = 0;
         animator = GetComponent<Animator>();
+        trail = gameObject.GetComponent<TrailRenderer>();
     }
 
     private void Update()
@@ -65,5 +69,22 @@ public class CreatureBehaviour : MonoBehaviour
             Debug.Log("made contact!");
             num_of_jumps = 0;
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "bottom")
+        {
+            StartCoroutine(respawn());
+        }
+    }
+
+    IEnumerator respawn()
+    {
+        trail.enabled = false;
+        num_of_jumps = 0;
+        creature_rigid.transform.position = spawnPosition.position;
+        yield return new WaitForSeconds(0.2f);
+        trail.enabled = true;
     }
 }
