@@ -134,4 +134,18 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.41666666
+    functionName: AlertObservers
+    data: AppearAnimationEnded
+    objectReferenceParameter: {fileID: 6686842215439666949, guid: 5c008db43263e41e887c2436d2d88de9, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.6666666
+    functionName: AlertObservers
+    data: DisappearAnimationStarted
+    objectReferenceParameter: {fileID: 6686842215439666949, guid: 5c008db43263e41e887c2436d2d88de9, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

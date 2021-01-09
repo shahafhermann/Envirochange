@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.TextCore;
 
@@ -14,7 +15,7 @@ public class CreatureBehaviour : MonoBehaviour
     public int MAX_JUMPS_ROW = 2;
     private int num_of_jumps;
 
-    private Animator animator;
+    // private Animator animator;
     private Vector2 _movement;
 
     // Start is called before the first frame update
@@ -22,7 +23,7 @@ public class CreatureBehaviour : MonoBehaviour
     {
         creature_rigid = GetComponent<Rigidbody2D>();
         num_of_jumps = 0;
-        animator = GetComponent<Animator>();
+        // animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -53,17 +54,37 @@ public class CreatureBehaviour : MonoBehaviour
         }
         
         // Animation control
-        animator.SetFloat("Horizontal", _movement.x);
-        animator.SetFloat("Speed", _movement.sqrMagnitude);
+        // animator.SetFloat("Horizontal", _movement.x);
+        // animator.SetFloat("Speed", _movement.sqrMagnitude);
     }
     
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Platform")
+        if (other.gameObject.CompareTag("Platform"))
         {
             Debug.Log("made contact!");
             num_of_jumps = 0;
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.CompareTag("Goal")) {
+            Debug.Log("Reached Goal!");
+            StartCoroutine(loadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+        }
+    }
+
+    IEnumerator loadLevel(int levelIndex) {
+        // TODO here we can insert all kinds of operations that will happen after waiting a certain amount of time
+        
+        // background.SetTrigger("PlayTrigger");  // This was used to play some animation
+        // yield return new WaitForSeconds(animationTime);  // Then wait for it to end
+        
+        // transition.SetTrigger("Start");  // Same
+        // yield return new WaitForSeconds(transitionTime);  // Same
+        
+        yield return new WaitForSeconds(0f);
+        SceneManager.LoadScene(levelIndex);
     }
 }
