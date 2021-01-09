@@ -58,4 +58,8 @@ public class GameManager : MonoBehaviour {
 
         SceneManager.LoadScene(levelIndex);
     }
+
+    public Level getCurrentLevel() {
+        return levels[curLevel];
+    }
 }
