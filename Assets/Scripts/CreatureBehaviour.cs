@@ -17,7 +17,10 @@ public class CreatureBehaviour : MonoBehaviour {
     private int num_of_jumps;
 
     // private Animator animator;
-    private Vector2 _movement;
+    // private Vector2 _movement;
+    
+    // public Transform spawnPosition;
+    private TrailRenderer trail;
 
     // Start is called before the first frame update
     void Start()
@@ -25,11 +28,13 @@ public class CreatureBehaviour : MonoBehaviour {
         creature_rigid = GetComponent<Rigidbody2D>();
         num_of_jumps = 0;
         // animator = GetComponent<Animator>();
+        
+        trail = gameObject.GetComponent<TrailRenderer>();
     }
 
     private void Update()
     {
-        _movement.x = Input.GetAxisRaw("Horizontal");
+        // _movement.x = Input.GetAxisRaw("Horizontal");
         
         float turnSpeed = groundSpeed;
         if (num_of_jumps > 0)
@@ -74,5 +79,19 @@ public class CreatureBehaviour : MonoBehaviour {
             Debug.Log("Reached Goal!");
             gameManager.completeLevel();
         }
+        
+        if (other.gameObject.CompareTag("Bottom"))
+        {
+            StartCoroutine(respawn());
+        }
+    }
+    
+    IEnumerator respawn()
+    {
+        trail.enabled = false;
+        num_of_jumps = 0;
+        creature_rigid.transform.position = gameManager.getCurrentLevel().GetPlatforms()[0].platform.transform.position;
+        yield return new WaitForSeconds(0.2f);
+        trail.enabled = true;
     }
 }
