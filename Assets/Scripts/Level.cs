@@ -10,4 +10,8 @@ public class Level {
     public Platform[] GetPlatforms() {
         return platforms;
     }
+
+    public Vector3 getRespawnPosition() {
+        return platforms[0].platform.transform.position;
+    }
 }
