@@ -90,7 +90,8 @@ public class CreatureBehaviour : MonoBehaviour {
     {
         trail.enabled = false;
         num_of_jumps = 0;
-        creature_rigid.transform.position = gameManager.getCurrentLevel().GetPlatforms()[0].platform.transform.position;
+        creature_rigid.transform.position = gameManager.getCurrentLevel().getRespawnPosition() 
+                                            + new Vector3(0, 0.5f, 0);
         yield return new WaitForSeconds(0.2f);
         trail.enabled = true;
     }
