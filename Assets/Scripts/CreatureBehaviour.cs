@@ -16,6 +16,8 @@ public class CreatureBehaviour : MonoBehaviour {
     public int MAX_JUMPS_ROW = 2;
     private int num_of_jumps;
 
+    private Quaternion originalRotation;
+
     // private Animator animator;
     // private Vector2 _movement;
     
@@ -23,8 +25,9 @@ public class CreatureBehaviour : MonoBehaviour {
     private TrailRenderer trail;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
+        originalRotation = gameObject.transform.rotation;
+        
         creature_rigid = GetComponent<Rigidbody2D>();
         num_of_jumps = 0;
         // animator = GetComponent<Animator>();
@@ -43,11 +46,11 @@ public class CreatureBehaviour : MonoBehaviour {
         }
         if (Input.GetKey("left"))
         {
-            creature_rigid.transform.position += Vector3.left * (turnSpeed * Time.deltaTime);
+            creature_rigid.transform.position += -transform.right * (turnSpeed * Time.deltaTime);
         }
         if (Input.GetKey("right"))
         {
-            creature_rigid.transform.position += Vector3.right * (turnSpeed * Time.deltaTime);
+            creature_rigid.transform.position += transform.right * (turnSpeed * Time.deltaTime);
         }
         
         if (Input.GetKeyDown("space") && num_of_jumps < MAX_JUMPS_ROW)
@@ -56,7 +59,8 @@ public class CreatureBehaviour : MonoBehaviour {
             num_of_jumps++;
             //creature_rigid.AddForce(new Vector2(0, jumpHeight * Time.fixedDeltaTime), ForceMode2D.Impulse);
             creature_rigid.velocity = new Vector2(creature_rigid.velocity.x, 0f);
-            creature_rigid.AddForce(Vector2.up * jumpHeight, ForceMode2D.Impulse);
+            Vector2 jumpDir = new Vector2((transform.up.x + Vector2.up.x) / 2, (transform.up.y + Vector2.up.y) / 2);
+            creature_rigid.AddForce(jumpDir * jumpHeight, ForceMode2D.Impulse);
         }
         
         // Animation control
@@ -69,14 +73,12 @@ public class CreatureBehaviour : MonoBehaviour {
     {
         if (other.gameObject.CompareTag("Platform"))
         {
-            Debug.Log("made contact!");
             num_of_jumps = 0;
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.CompareTag("Goal")) {
-            Debug.Log("Reached Goal!");
             gameManager.completeLevel();
         }
         
@@ -84,8 +86,31 @@ public class CreatureBehaviour : MonoBehaviour {
         {
             StartCoroutine(respawn());
         }
+
+        if (other.gameObject.CompareTag("Magnet")) {
+            magnetizeTo(other.gameObject);
+        }
     }
-    
+
+    private void OnTriggerStay2D(Collider2D other) {
+        if (other.gameObject.CompareTag("Magnet")) {
+            magnetizeTo(other.gameObject);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other) {
+        if (other.gameObject.CompareTag("Magnet")) {
+            Physics2D.gravity = new Vector2(0, -9.8f);
+            gameObject.transform.rotation = originalRotation;
+        }
+    }
+
+    private void magnetizeTo(GameObject other) {
+        Vector2 dir = -(transform.position - other.gameObject.transform.position).normalized * 9.8f;
+        Physics2D.gravity = dir;
+        gameObject.transform.rotation = other.transform.rotation;
+    }
+
     IEnumerator respawn()
     {
         trail.enabled = false;
