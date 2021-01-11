@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: platform
+  m_Name: Platform_appear
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -33,40 +33,6 @@ AnimationClip:
       value: {fileID: 21300000, guid: 4ed0d7e133c064d8a81506db61633320, type: 3}
     - time: 0.5
       value: {fileID: 21300000, guid: 08a5804d901d248b1aa4d78e1105d0b1, type: 3}
-    - time: 0.5833333
-      value: {fileID: 21300000, guid: 4f0d1868a3ba0456693f8ffb02a0943c, type: 3}
-    - time: 0.6666667
-      value: {fileID: 21300000, guid: 7d8f9bda173d84b6cae89acb29a61aa3, type: 3}
-    - time: 0.75
-      value: {fileID: 21300000, guid: dcb52d43a8c8b44d7b488061af55453a, type: 3}
-    - time: 0.8333333
-      value: {fileID: 21300000, guid: 57228fcacc8144a5db04bc42d43a1720, type: 3}
-    - time: 0.9166667
-      value: {fileID: 21300000, guid: def8f8c7be9cb40ae826c2615175672d, type: 3}
-    - time: 1
-      value: {fileID: 21300000, guid: 0831791dd9d584031b4cec1dc056ccdd, type: 3}
-    - time: 1.0833334
-      value: {fileID: 21300000, guid: e3105054fe0e0452cb2c4a11cdca7659, type: 3}
-    - time: 1.1666666
-      value: {fileID: 21300000, guid: 16fd50c7a5a984483b3d9a884011c1de, type: 3}
-    - time: 1.25
-      value: {fileID: 21300000, guid: 92e6ac6a2a0da48898d3356fb66fac6f, type: 3}
-    - time: 1.3333334
-      value: {fileID: 21300000, guid: 5ea6672f851d84c4685f7f815b2d4d3d, type: 3}
-    - time: 1.4166666
-      value: {fileID: 21300000, guid: 907de2d384ea6416391fc48ae7023e6f, type: 3}
-    - time: 1.5
-      value: {fileID: 21300000, guid: 3d750b20614334fb49f512572b61b98f, type: 3}
-    - time: 1.5833334
-      value: {fileID: 21300000, guid: 86cf954044f834c33b7ccc84415602ed, type: 3}
-    - time: 1.6666666
-      value: {fileID: 21300000, guid: 8f7d8044709004c5894332ec2feac8fd, type: 3}
-    - time: 1.75
-      value: {fileID: 21300000, guid: 6113c812d9584400883f7270775d707e, type: 3}
-    - time: 1.8333334
-      value: {fileID: 21300000, guid: 96113ac1fe18746ae9fc888ee9cd1efe, type: 3}
-    - time: 1.9166666
-      value: {fileID: 21300000, guid: a6c0861e62b7748a7b1951ed00c140fa, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -93,34 +59,17 @@ AnimationClip:
     - {fileID: 21300000, guid: 6a4a3904e16504d5c8a8cb3b84ee9b61, type: 3}
     - {fileID: 21300000, guid: 4ed0d7e133c064d8a81506db61633320, type: 3}
     - {fileID: 21300000, guid: 08a5804d901d248b1aa4d78e1105d0b1, type: 3}
-    - {fileID: 21300000, guid: 4f0d1868a3ba0456693f8ffb02a0943c, type: 3}
-    - {fileID: 21300000, guid: 7d8f9bda173d84b6cae89acb29a61aa3, type: 3}
-    - {fileID: 21300000, guid: dcb52d43a8c8b44d7b488061af55453a, type: 3}
-    - {fileID: 21300000, guid: 57228fcacc8144a5db04bc42d43a1720, type: 3}
-    - {fileID: 21300000, guid: def8f8c7be9cb40ae826c2615175672d, type: 3}
-    - {fileID: 21300000, guid: 0831791dd9d584031b4cec1dc056ccdd, type: 3}
-    - {fileID: 21300000, guid: e3105054fe0e0452cb2c4a11cdca7659, type: 3}
-    - {fileID: 21300000, guid: 16fd50c7a5a984483b3d9a884011c1de, type: 3}
-    - {fileID: 21300000, guid: 92e6ac6a2a0da48898d3356fb66fac6f, type: 3}
-    - {fileID: 21300000, guid: 5ea6672f851d84c4685f7f815b2d4d3d, type: 3}
-    - {fileID: 21300000, guid: 907de2d384ea6416391fc48ae7023e6f, type: 3}
-    - {fileID: 21300000, guid: 3d750b20614334fb49f512572b61b98f, type: 3}
-    - {fileID: 21300000, guid: 86cf954044f834c33b7ccc84415602ed, type: 3}
-    - {fileID: 21300000, guid: 8f7d8044709004c5894332ec2feac8fd, type: 3}
-    - {fileID: 21300000, guid: 6113c812d9584400883f7270775d707e, type: 3}
-    - {fileID: 21300000, guid: 96113ac1fe18746ae9fc888ee9cd1efe, type: 3}
-    - {fileID: 21300000, guid: a6c0861e62b7748a7b1951ed00c140fa, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 2
+    m_StopTime: 0.5833333
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
     m_HasAdditiveReferencePose: 0
-    m_LoopTime: 1
+    m_LoopTime: 0
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
     m_LoopBlendPositionY: 0
@@ -138,13 +87,6 @@ AnimationClip:
   - time: 0.41666666
     functionName: AlertObservers
     data: AppearAnimationEnded
-    objectReferenceParameter: {fileID: 6686842215439666949, guid: 5c008db43263e41e887c2436d2d88de9, type: 3}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 1.6666666
-    functionName: AlertObservers
-    data: DisappearAnimationStarted
     objectReferenceParameter: {fileID: 6686842215439666949, guid: 5c008db43263e41e887c2436d2d88de9, type: 3}
     floatParameter: 0
     intParameter: 0
