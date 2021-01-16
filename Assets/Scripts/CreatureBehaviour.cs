@@ -76,6 +76,7 @@ public class CreatureBehaviour : MonoBehaviour {
             num_of_jumps = 0;
         }
     }
+    
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.CompareTag("Goal")) {
