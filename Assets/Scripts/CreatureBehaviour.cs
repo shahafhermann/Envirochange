@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.TextCore;
+using DitzeGames.Effects;
 
 public class CreatureBehaviour : MonoBehaviour {
     public GameManager gameManager;
@@ -17,6 +18,11 @@ public class CreatureBehaviour : MonoBehaviour {
     private int num_of_jumps;
 
     private Quaternion originalRotation;
+
+    public float dashSpeed;
+    public float dashTime;
+    private ParticleSystem dashParticles;
+    private bool isDashing;
 
     // private Animator animator;
     // private Vector2 _movement;
@@ -33,6 +39,11 @@ public class CreatureBehaviour : MonoBehaviour {
         // animator = GetComponent<Animator>();
         
         trail = gameObject.GetComponent<TrailRenderer>();
+        
+        trail.enabled = false;
+        dashParticles = gameObject.GetComponentInChildren<ParticleSystem>();
+        dashParticles.Stop();
+        isDashing = false;
     }
 
     private void Update()
@@ -44,16 +55,17 @@ public class CreatureBehaviour : MonoBehaviour {
         {
             turnSpeed = midAir;
         }
-        if (Input.GetKey("left"))
+        if (Input.GetKey("left") && !isDashing)
         {
             creature_rigid.transform.position += -transform.right * (turnSpeed * Time.deltaTime);
         }
-        if (Input.GetKey("right"))
+        if (Input.GetKey("right") && !isDashing)
         {
             creature_rigid.transform.position += transform.right * (turnSpeed * Time.deltaTime);
         }
         
-        if (Input.GetKeyDown("space") && num_of_jumps < MAX_JUMPS_ROW)
+        
+        if (Input.GetKeyDown("space") && num_of_jumps == 0)
         {
             
             num_of_jumps++;
@@ -63,9 +75,63 @@ public class CreatureBehaviour : MonoBehaviour {
             creature_rigid.AddForce(jumpDir * jumpHeight, ForceMode2D.Impulse);
         }
         
+
+        else if (num_of_jumps < MAX_JUMPS_ROW && Input.GetKeyDown(KeyCode.E))
+        {
+            StartCoroutine(dashEffect());
+        }
+
         // Animation control
         // animator.SetFloat("Horizontal", _movement.x);
         // animator.SetFloat("Speed", _movement.sqrMagnitude);
+    }
+
+    private float translate_axis_to_speed(float axis)
+    {
+        if (axis > 0f)
+        {
+            return dashSpeed;
+        }
+        else if (axis < 0f)
+        {
+            return -dashSpeed;
+        }
+
+        return axis;
+    }
+
+    IEnumerator dashEffect()
+    {
+        isDashing = true;
+        num_of_jumps++;
+        dashParticles.Play();
+        CameraEffects.ShakeOnce(0.2f, 5f);
+
+        float y_speed = translate_axis_to_speed(Input.GetAxis("Vertical"));
+        float x_speed = translate_axis_to_speed(Input.GetAxis("Horizontal"));
+
+        if (x_speed == y_speed && x_speed == 0f)
+        {
+            x_speed = dashSpeed;
+        }
+        trail.enabled = true;
+        creature_rigid.velocity = new Vector2(x_speed, y_speed);
+        float originalDrag = creature_rigid.drag;
+        float originalAngularDrag = creature_rigid.angularDrag;
+        float originalGravity = creature_rigid.gravityScale;
+        creature_rigid.drag = 0f;
+        creature_rigid.angularDrag = 0f;
+        creature_rigid.gravityScale = 0f;
+        
+        yield return new WaitForSeconds(dashTime);
+        
+        dashParticles.Stop();
+        trail.enabled = false;
+        creature_rigid.velocity = Vector2.zero;
+        creature_rigid.drag = originalDrag;
+        creature_rigid.angularDrag = originalAngularDrag;
+        creature_rigid.gravityScale = originalGravity;
+        isDashing = false;
     }
     
 
@@ -90,6 +156,7 @@ public class CreatureBehaviour : MonoBehaviour {
 
         if (other.gameObject.CompareTag("Magnet")) {
             magnetizeTo(other.gameObject);
+            
         }
     }
 
@@ -119,6 +186,6 @@ public class CreatureBehaviour : MonoBehaviour {
         creature_rigid.transform.position = gameManager.getCurrentLevel().getRespawnPosition() 
                                             + new Vector3(0, 0.5f, 0);
         yield return new WaitForSeconds(0.2f);
-        trail.enabled = true;
+        trail.enabled = false;
     }
 }
