@@ -76,7 +76,7 @@ public class CreatureBehaviour : MonoBehaviour {
         }
         
 
-        else if (num_of_jumps < MAX_JUMPS_ROW && Input.GetKeyDown(KeyCode.E))
+        else if (num_of_jumps < MAX_JUMPS_ROW && Input.GetKeyDown(KeyCode.E) && !isDashing)
         {
             StartCoroutine(dashEffect());
         }
