@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour {
     // Will be refactored later
     public Level[] levels;
     private int curLevel = 0;
-
+    
     void Start()
     {
         // Repeat change every 3 seconds
