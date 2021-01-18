@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour {
 
     public void completeLevel() {
         StartCoroutine(loadLevel(SceneManager.GetActiveScene().buildIndex + 1));
-        curLevel++;
+        // curLevel++;
     }
     
     IEnumerator loadLevel(int levelIndex) {
