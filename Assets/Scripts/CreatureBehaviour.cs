@@ -23,6 +23,7 @@ public class CreatureBehaviour : MonoBehaviour {
     public float dashTime;
     private ParticleSystem dashParticles;
     private bool isDashing;
+    public bool allowDashing = false;
 
     // private Animator animator;
     // private Vector2 _movement;
@@ -68,7 +69,6 @@ public class CreatureBehaviour : MonoBehaviour {
         if (Input.GetKeyDown("space") && num_of_jumps == 0)
         {
             
-            num_of_jumps++;
             //creature_rigid.AddForce(new Vector2(0, jumpHeight * Time.fixedDeltaTime), ForceMode2D.Impulse);
             creature_rigid.velocity = new Vector2(creature_rigid.velocity.x, 0f);
             Vector2 jumpDir = new Vector2((transform.up.x + Vector2.up.x) / 2, (transform.up.y + Vector2.up.y) / 2);
@@ -76,7 +76,7 @@ public class CreatureBehaviour : MonoBehaviour {
         }
         
 
-        else if (num_of_jumps < MAX_JUMPS_ROW && Input.GetKeyDown(KeyCode.E) && !isDashing)
+        else if (allowDashing && (num_of_jumps < MAX_JUMPS_ROW) && Input.GetKeyDown(KeyCode.E) && !isDashing)
         {
             StartCoroutine(dashEffect());
         }
@@ -103,9 +103,9 @@ public class CreatureBehaviour : MonoBehaviour {
     IEnumerator dashEffect()
     {
         isDashing = true;
-        num_of_jumps++;
+        num_of_jumps++;  
         dashParticles.Play();
-        CameraEffects.ShakeOnce(0.2f, 5f);
+        CameraEffects.ShakeOnce(0.3f, 10f);
 
         float y_speed = translate_axis_to_speed(Input.GetAxis("Vertical"));
         float x_speed = translate_axis_to_speed(Input.GetAxis("Horizontal"));
@@ -142,7 +142,15 @@ public class CreatureBehaviour : MonoBehaviour {
             num_of_jumps = 0;
         }
     }
-    
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Platform"))
+        {
+            num_of_jumps++;
+        }
+    }
+
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.CompareTag("Goal")) {
