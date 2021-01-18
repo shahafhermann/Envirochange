@@ -85,44 +85,34 @@ public class CreatureBehaviour : MonoBehaviour {
         // animator.SetFloat("Horizontal", _movement.x);
         // animator.SetFloat("Speed", _movement.sqrMagnitude);
     }
-
-    private float translate_axis_to_speed(float axis)
-    {
-        if (axis > 0f)
-        {
-            return dashSpeed;
-        }
-        else if (axis < 0f)
-        {
-            return -dashSpeed;
-        }
-
-        return axis;
-    }
+    
 
     IEnumerator dashEffect()
     {
         isDashing = true;
         num_of_jumps++;  
         dashParticles.Play();
-        CameraEffects.ShakeOnce(0.3f, 10f);
+        
+        Vector2 direction = Vector3.zero;
+        if (Input.GetKey(KeyCode.UpArrow)) { direction += Vector2.up; }
+        if (Input.GetKey(KeyCode.DownArrow)) { direction += Vector2.down; }
+        if (Input.GetKey(KeyCode.LeftArrow)) { direction += Vector2.left; }
+        if (Input.GetKey(KeyCode.RightArrow)) { direction += Vector2.right; }
 
-        float y_speed = translate_axis_to_speed(Input.GetAxis("Vertical"));
-        float x_speed = translate_axis_to_speed(Input.GetAxis("Horizontal"));
-
-        if (x_speed == y_speed && x_speed == 0f)
+        if (direction == Vector2.zero)
         {
-            x_speed = dashSpeed;
+            direction += Vector2.up;
         }
+        direction.Normalize();
         trail.enabled = true;
-        creature_rigid.velocity = new Vector2(x_speed, y_speed);
+        creature_rigid.velocity = direction * dashSpeed;
         float originalDrag = creature_rigid.drag;
         float originalAngularDrag = creature_rigid.angularDrag;
         float originalGravity = creature_rigid.gravityScale;
         creature_rigid.drag = 0f;
         creature_rigid.angularDrag = 0f;
         creature_rigid.gravityScale = 0f;
-        
+        CameraEffects.ShakeOnce(0.3f, 10f);
         yield return new WaitForSeconds(dashTime);
         
         dashParticles.Stop();
