@@ -47,7 +47,7 @@ public class CreatureBehaviour : MonoBehaviour {
         // trail = gameObject.GetComponent<TrailRenderer>();
         
         // trail.enabled = false;
-        trail.SetActive(false);
+        // trail.SetActive(false);
         dashParticles = gameObject.GetComponentInChildren<ParticleSystem>();
         dashParticles.Stop();
         isDashing = false;
@@ -199,6 +199,6 @@ public class CreatureBehaviour : MonoBehaviour {
                                             + new Vector3(0, 0.5f, 0);
         yield return new WaitForSeconds(0.2f);
         // trail.enabled = false;
-        trail.SetActive(false);
+        trail.SetActive(true);
     }
 }

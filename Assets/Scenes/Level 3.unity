@@ -5779,7 +5779,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4222289015941080672, guid: b829cf26c55624c74bd3c36646a2079c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.17
+      value: -4.3
       objectReference: {fileID: 0}
     - target: {fileID: 4222289015941080672, guid: b829cf26c55624c74bd3c36646a2079c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -11258,7 +11258,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startChangeAfterSeconds: 2
   changeRate: 2
-  goalAnimationTime: 0.8
   levels:
   - platforms:
     - platform: {fileID: 2868788515429158583}
@@ -11268,9 +11267,9 @@ MonoBehaviour:
     - platform: {fileID: 6686842216434669357}
       positions:
       - {x: 0, y: 0, z: 0}
-      - {x: 5.51, y: 0, z: 0}
+      - {x: 4.3, y: 0, z: 0}
       - {x: 0, y: 0, z: 0}
-      - {x: -5.19, y: 0, z: 0}
+      - {x: -4.3, y: 0, z: 0}
       zRotations: []
       changeType: 1
     - platform: {fileID: 736952769289635489}
@@ -11516,7 +11515,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4873474947529720344, guid: 244e427dec38e402e91ba216f0ec0a79, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.51
+      value: 4.3
       objectReference: {fileID: 0}
     - target: {fileID: 4873474947529720344, guid: 244e427dec38e402e91ba216f0ec0a79, type: 3}
       propertyPath: m_LocalPosition.y
@@ -11748,7 +11747,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7874086739786954722, guid: 3ae5f5ee5b9cf4561943a7fa486af1fb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.19
+      value: -4.3
       objectReference: {fileID: 0}
     - target: {fileID: 7874086739786954722, guid: 3ae5f5ee5b9cf4561943a7fa486af1fb, type: 3}
       propertyPath: m_LocalPosition.y
