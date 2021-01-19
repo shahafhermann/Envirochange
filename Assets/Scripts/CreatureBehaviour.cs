@@ -231,7 +231,7 @@ public class CreatureBehaviour : MonoBehaviour {
         trail.SetActive(false);
         num_of_jumps = 0;
         creature_rigid.transform.position = gameManager.getCurrentLevel().getRespawnPosition() 
-                                            + new Vector3(0, 0.5f, 0);
+                                            + new Vector3(0, 0.15f, 0);
         yield return new WaitForSeconds(0.2f);
         // trail.enabled = false;
         trail.SetActive(true);
