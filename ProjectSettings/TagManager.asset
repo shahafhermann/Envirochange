@@ -8,6 +8,7 @@ TagManager:
   - Goal
   - Bottom
   - Magnet
+  - Crossfade
   layers:
   - Default
   - TransparentFX

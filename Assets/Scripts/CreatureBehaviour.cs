@@ -9,7 +9,7 @@ using UnityEngine.TextCore;
 using DitzeGames.Effects;
 
 public class CreatureBehaviour : MonoBehaviour {
-    public GameManager gameManager;
+    private GameManager gameManager;
     
     private Rigidbody2D creature_rigid;
     public float jumpHeight = 0f;
@@ -35,6 +35,10 @@ public class CreatureBehaviour : MonoBehaviour {
     // public Transform spawnPosition;
     // private TrailRenderer trail;
     public GameObject trail;
+
+    private void Awake() {
+        gameManager = FindObjectOfType<GameManager>();
+    }
 
     // Start is called before the first frame update
     void Start() {
