@@ -18,14 +18,18 @@ public class GameManager : MonoBehaviour {
     public float startChangeAfterSeconds = 3f;
     public float changeRate = 3f;
 
-    private float goalAnimationTime = 0.5f;
+    private float goalAnimationTime = 0.25f;
     // public Animator goalAnimator;
     private Animator endPlatformAnimator;
+
+    public Animator transitionAnimator;
+    [Range(0.1f, 2f)]
+    public float transitionTime = 1f;
 
     // Will be refactored later
     public Level[] levels;
     private int curLevel = 0;
-    
+
     void Start() {
         Time.timeScale = 1;
         // Repeat change every 3 seconds
@@ -49,17 +53,21 @@ public class GameManager : MonoBehaviour {
     }
 
     public void completeLevel() {
+        // if (curLevel < levels.Length - 1) { 
+        //     curLevel++;
+        // }
         
         StartCoroutine(loadLevel(SceneManager.GetActiveScene().buildIndex + 1));
-        // curLevel++;
+        
     }
     
     IEnumerator loadLevel(int levelIndex) {
-        // TODO here we can insert all kinds of operations that will happen after waiting a certain amount of time
-
-        // goalAnimator.SetTrigger("GoalReached");
         endPlatformAnimator.SetTrigger("End");
         yield return new WaitForSeconds(goalAnimationTime);
+        
+        // Level transition
+        transitionAnimator.SetTrigger("Start");
+        yield return new WaitForSeconds(transitionTime);
         
         SceneManager.LoadScene(levelIndex);
     }
