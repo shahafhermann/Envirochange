@@ -70,13 +70,6 @@ public class CreatureBehaviour : MonoBehaviour {
             turnSpeed = midAir;
         }
         
-
-        // Animation control
-        // animator.SetFloat("Horizontal", _movement.x);
-        // animator.SetFloat("Speed", _movement.sqrMagnitude);
-    }
-
-    private void FixedUpdate() {
         if (allowMovement) {
             if (Input.GetKey(KeyCode.LeftArrow) && !isDashing)
             {
@@ -103,6 +96,39 @@ public class CreatureBehaviour : MonoBehaviour {
                 StartCoroutine(dashEffect());
             }
         }
+
+        // Animation control
+        // animator.SetFloat("Horizontal", _movement.x);
+        // animator.SetFloat("Speed", _movement.sqrMagnitude);
+    }
+
+    private void FixedUpdate() {
+        // if (allowMovement) {
+        //     if (Input.GetKey(KeyCode.LeftArrow) && !isDashing)
+        //     {
+        //         creature_rigid.transform.position += -transform.right * (turnSpeed * Time.deltaTime);
+        //         eyeChild.transform.Rotate(0,0,turnSpeed );
+        //     }
+        //     if (Input.GetKey(KeyCode.RightArrow) && !isDashing)
+        //     {
+        //         creature_rigid.transform.position += transform.right * (turnSpeed * Time.deltaTime);
+        //         eyeChild.transform.Rotate(0,0,-turnSpeed );
+        //     }
+        //
+        //
+        //     if (Input.GetKey(KeyCode.Space) && num_of_jumps == 0) {
+        //         //creature_rigid.AddForce(new Vector2(0, jumpHeight * Time.fixedDeltaTime), ForceMode2D.Impulse);
+        //         creature_rigid.velocity = new Vector2(creature_rigid.velocity.x, 0f);
+        //         Vector2 jumpDir = new Vector2((transform.up.x + Vector2.up.x) / 2, (transform.up.y + Vector2.up.y) / 2);
+        //         creature_rigid.AddForce(jumpDir * jumpHeight, ForceMode2D.Impulse);
+        //     }
+        //
+        //
+        //     else if (allowDashing && (num_of_jumps < MAX_JUMPS_ROW) && Input.GetKey(KeyCode.E) && !isDashing)
+        //     {
+        //         StartCoroutine(dashEffect());
+        //     }
+        // }
     }
 
 

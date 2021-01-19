@@ -5017,6 +5017,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4873474947529720344, guid: 244e427dec38e402e91ba216f0ec0a79, type: 3}
   m_PrefabInstance: {fileID: 69619880}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &82705932 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 48128832486022113, guid: c4268eda46b2a4d6db57b5ced89e570b, type: 3}
+  m_PrefabInstance: {fileID: 984579036}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &201433356
 GameObject:
   m_ObjectHideFlags: 0
@@ -10913,8 +10918,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startChangeAfterSeconds: 2
   changeRate: 2
-  transitionAnimator: {fileID: 0}
-  transitionTime: 1
+  transitionAnimator: {fileID: 82705932}
+  transitionTime: 0.5
   levels:
   - platforms:
     - platform: {fileID: 386295891}
@@ -10947,9 +10952,7 @@ MonoBehaviour:
       zRotations: []
       changeType: 0
     - platform: {fileID: 368158536}
-      positions:
-      - {x: -7, y: -1.5, z: 0}
-      - {x: -2.04, y: -3.44, z: 0}
+      positions: []
       zRotations: []
       changeType: 0
 --- !u!4 &1977145576

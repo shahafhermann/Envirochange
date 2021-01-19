@@ -10950,7 +10950,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!199 &1740074374
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -16614,6 +16614,10 @@ PrefabInstance:
     - target: {fileID: 6907911914814713810, guid: 3ae5f5ee5b9cf4561943a7fa486af1fb, type: 3}
       propertyPath: TrailModule.widthOverTrail.scalar
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6907911914814713815, guid: 3ae5f5ee5b9cf4561943a7fa486af1fb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7874086739786954722, guid: 3ae5f5ee5b9cf4561943a7fa486af1fb, type: 3}
       propertyPath: m_RootOrder
