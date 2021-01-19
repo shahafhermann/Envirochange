@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
@@ -16,6 +17,7 @@ public class CreatureBehaviour : MonoBehaviour {
     public float midAir = 5f;
     public int MAX_JUMPS_ROW = 2;
     private int num_of_jumps;
+    private float turnSpeed;
 
     private Quaternion originalRotation;
 
@@ -25,11 +27,14 @@ public class CreatureBehaviour : MonoBehaviour {
     private bool isDashing;
     public bool allowDashing = false;
 
+    private bool allowMovement = true;
+
     // private Animator animator;
     // private Vector2 _movement;
     
     // public Transform spawnPosition;
-    private TrailRenderer trail;
+    // private TrailRenderer trail;
+    public GameObject trail;
 
     // Start is called before the first frame update
     void Start() {
@@ -39,9 +44,10 @@ public class CreatureBehaviour : MonoBehaviour {
         num_of_jumps = 0;
         // animator = GetComponent<Animator>();
         
-        trail = gameObject.GetComponent<TrailRenderer>();
+        // trail = gameObject.GetComponent<TrailRenderer>();
         
-        trail.enabled = false;
+        // trail.enabled = false;
+        trail.SetActive(false);
         dashParticles = gameObject.GetComponentInChildren<ParticleSystem>();
         dashParticles.Stop();
         isDashing = false;
@@ -51,41 +57,45 @@ public class CreatureBehaviour : MonoBehaviour {
     {
         // _movement.x = Input.GetAxisRaw("Horizontal");
         
-        float turnSpeed = groundSpeed;
+        turnSpeed = groundSpeed;
         if (num_of_jumps > 0)
         {
             turnSpeed = midAir;
         }
-        if (Input.GetKey("left") && !isDashing)
-        {
-            creature_rigid.transform.position += -transform.right * (turnSpeed * Time.deltaTime);
-        }
-        if (Input.GetKey("right") && !isDashing)
-        {
-            creature_rigid.transform.position += transform.right * (turnSpeed * Time.deltaTime);
-        }
         
-        
-        if (Input.GetKeyDown("space") && num_of_jumps == 0)
-        {
-            
-            //creature_rigid.AddForce(new Vector2(0, jumpHeight * Time.fixedDeltaTime), ForceMode2D.Impulse);
-            creature_rigid.velocity = new Vector2(creature_rigid.velocity.x, 0f);
-            Vector2 jumpDir = new Vector2((transform.up.x + Vector2.up.x) / 2, (transform.up.y + Vector2.up.y) / 2);
-            creature_rigid.AddForce(jumpDir * jumpHeight, ForceMode2D.Impulse);
-        }
-        
-
-        else if (allowDashing && (num_of_jumps < MAX_JUMPS_ROW) && Input.GetKeyDown(KeyCode.E) && !isDashing)
-        {
-            StartCoroutine(dashEffect());
-        }
 
         // Animation control
         // animator.SetFloat("Horizontal", _movement.x);
         // animator.SetFloat("Speed", _movement.sqrMagnitude);
     }
-    
+
+    private void FixedUpdate() {
+        if (allowMovement) {
+            if (Input.GetKey(KeyCode.LeftArrow) && !isDashing)
+            {
+                creature_rigid.transform.position += -transform.right * (turnSpeed * Time.deltaTime);
+            }
+            if (Input.GetKey(KeyCode.RightArrow) && !isDashing)
+            {
+                creature_rigid.transform.position += transform.right * (turnSpeed * Time.deltaTime);
+            }
+        
+        
+            if (Input.GetKey(KeyCode.Space) && num_of_jumps == 0) {
+                //creature_rigid.AddForce(new Vector2(0, jumpHeight * Time.fixedDeltaTime), ForceMode2D.Impulse);
+                creature_rigid.velocity = new Vector2(creature_rigid.velocity.x, 0f);
+                Vector2 jumpDir = new Vector2((transform.up.x + Vector2.up.x) / 2, (transform.up.y + Vector2.up.y) / 2);
+                creature_rigid.AddForce(jumpDir * jumpHeight, ForceMode2D.Impulse);
+            }
+        
+
+            else if (allowDashing && (num_of_jumps < MAX_JUMPS_ROW) && Input.GetKey(KeyCode.E) && !isDashing)
+            {
+                StartCoroutine(dashEffect());
+            }
+        }
+    }
+
 
     IEnumerator dashEffect()
     {
@@ -104,7 +114,8 @@ public class CreatureBehaviour : MonoBehaviour {
             direction += Vector2.up;
         }
         direction.Normalize();
-        trail.enabled = true;
+        // trail.enabled = true;
+        trail.SetActive(true);
         creature_rigid.velocity = direction * dashSpeed;
         float originalDrag = creature_rigid.drag;
         float originalAngularDrag = creature_rigid.angularDrag;
@@ -116,7 +127,8 @@ public class CreatureBehaviour : MonoBehaviour {
         yield return new WaitForSeconds(dashTime);
         
         dashParticles.Stop();
-        trail.enabled = false;
+        // trail.enabled = false;
+        trail.SetActive(false);
         creature_rigid.velocity = Vector2.zero;
         creature_rigid.drag = originalDrag;
         creature_rigid.angularDrag = originalAngularDrag;
@@ -144,6 +156,7 @@ public class CreatureBehaviour : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.CompareTag("Goal")) {
+            allowMovement = false;
             gameManager.completeLevel();
         }
         
@@ -179,11 +192,13 @@ public class CreatureBehaviour : MonoBehaviour {
 
     IEnumerator respawn()
     {
-        trail.enabled = false;
+        // trail.enabled = false;
+        trail.SetActive(false);
         num_of_jumps = 0;
         creature_rigid.transform.position = gameManager.getCurrentLevel().getRespawnPosition() 
                                             + new Vector3(0, 0.5f, 0);
         yield return new WaitForSeconds(0.2f);
-        trail.enabled = false;
+        // trail.enabled = false;
+        trail.SetActive(false);
     }
 }
