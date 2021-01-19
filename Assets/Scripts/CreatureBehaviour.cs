@@ -35,6 +35,8 @@ public class CreatureBehaviour : MonoBehaviour {
     // public Transform spawnPosition;
     // private TrailRenderer trail;
     public GameObject trail;
+    
+    private Transform eyeChild;
 
     // Start is called before the first frame update
     void Start() {
@@ -51,6 +53,7 @@ public class CreatureBehaviour : MonoBehaviour {
         dashParticles = gameObject.GetComponentInChildren<ParticleSystem>();
         dashParticles.Stop();
         isDashing = false;
+        eyeChild = gameObject.transform.GetChild(3);
     }
 
     private void Update()
@@ -74,10 +77,12 @@ public class CreatureBehaviour : MonoBehaviour {
             if (Input.GetKey(KeyCode.LeftArrow) && !isDashing)
             {
                 creature_rigid.transform.position += -transform.right * (turnSpeed * Time.deltaTime);
+                eyeChild.transform.Rotate(0,0,turnSpeed );
             }
             if (Input.GetKey(KeyCode.RightArrow) && !isDashing)
             {
                 creature_rigid.transform.position += transform.right * (turnSpeed * Time.deltaTime);
+                eyeChild.transform.Rotate(0,0,-turnSpeed );
             }
         
         
