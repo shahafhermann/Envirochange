@@ -146,6 +146,7 @@ MonoBehaviour:
   dashSpeed: 15
   dashTime: 0.3
   allowDashing: 0
+  trail: {fileID: 5385170444456538668}
 --- !u!96 &4222289015941080677
 TrailRenderer:
   serializedVersion: 2
@@ -5177,6 +5178,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2498efd7bb8434b4abd6c83fac9349ae, type: 3}
+--- !u!1 &5385170444456538668 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3318668826031479096, guid: 2498efd7bb8434b4abd6c83fac9349ae, type: 3}
+  m_PrefabInstance: {fileID: 7256900206753966868}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5385170444456538657 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3318668826031479093, guid: 2498efd7bb8434b4abd6c83fac9349ae, type: 3}

@@ -27,15 +27,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Level 6 (dash tutorial).unity
     guid: c0515c82b5a464626a9195527fc341cb
   - enabled: 1
-    path: Assets/Scenes/Level 3t.unity
-    guid: 50d43bf299e89442ba8554355f96a252
-  - enabled: 1
-    path: Assets/Scenes/Level 4t.unity
+    path: Assets/Scenes/Level 7.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
-    path: Assets/Scenes/Level 5t.unity
-    guid: 59d2c13f1d0f44408a0ed8c023d86043
   - enabled: 1
     path: Assets/Scenes/EndScene.unity
     guid: a602ec0b694e24f749c79bd9097e20f1
+  - enabled: 1
+    path: Assets/Scenes/Level 21.unity
+    guid: 50d43bf299e89442ba8554355f96a252
+  - enabled: 1
+    path: Assets/Scenes/Level 20.unity
+    guid: 59d2c13f1d0f44408a0ed8c023d86043
   m_configObjects: {}
