@@ -17,16 +17,13 @@ public class GameManager : MonoBehaviour {
 
     public float startChangeAfterSeconds = 3f;
     public float changeRate = 3f;
+    public float timeToWaitForDisappear = 0.5f;
 
     private float goalAnimationTime = 2.26f;
     // public Animator goalAnimator;
     private Animator endPlatformAnimator;
 
-    [HideInInspector]
-    public static bool exploded = false;
     public static Animator transitionAnimator;
-    // [Range(0.1f, 2f)]
-    // private float transitionTime = 0.1f;
 
     // Will be refactored later
     public Level[] levels;
@@ -48,31 +45,28 @@ public class GameManager : MonoBehaviour {
         endPlatformAnimator = levels[curLevel].GetPlatforms()[levels[curLevel].GetPlatforms().Length - 1]
                                 .platform.GetComponent<Animator>();
     }
-    
-    void Update()
-    {
-        // if (exploded) {
-        //     StartCoroutine(levelTransitionHelper());
-        //     exploded = false;
-        // }
-    }
 
     /**
      * Insert all environmental changes that should happen here
      */
     private void changeEnvironment() {
         foreach (Platform platform in levels[curLevel].GetPlatforms()) {
-            // if (platform.changeType == ChangeType.Movement) {
-            //     StartCoroutine(animateMove(platform.platform));
-            // }
-            platform.move();
+            StartCoroutine(move(platform));
         }
     }
     
-    // IEnumerator animateMove(GameObject platform) {
-    //     platform.GetComponent<Animator>().SetTrigger("Move");
-    //     yield return new WaitForSeconds(2f);
-    // }
+    IEnumerator move(Platform platform) {
+        if (platform.changeType == ChangeType.Movement) {
+            platform.platform.GetComponent<Animator>().SetTrigger("StartMove");
+            yield return new WaitForSeconds(timeToWaitForDisappear);
+        }
+        
+        platform.move();
+
+        if (platform.changeType == ChangeType.Movement) {
+            platform.platform.GetComponent<Animator>().SetTrigger("StopMove");
+        }
+    }
 
     public void completeLevel() {
         // if (curLevel < levels.Length - 1) { 
