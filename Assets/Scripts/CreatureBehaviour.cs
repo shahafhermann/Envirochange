@@ -29,17 +29,15 @@ public class CreatureBehaviour : MonoBehaviour {
     private bool isDashing;
     public bool allowDashing = false;
 
+    // private bool magnetized = false;
+    // private GameObject magnetPlatform;
+
     private bool allowMovement = true;
     
     private bool last_resort_jump = true;
 
     private PlayerInput  controls;
-
-    // private Animator animator;
-    // private Vector2 _movement;
     
-    // public Transform spawnPosition;
-    // private TrailRenderer trail;
     public GameObject trail;
     
     private Transform eyeChild;
@@ -126,15 +124,27 @@ public class CreatureBehaviour : MonoBehaviour {
 
     private void _jump(float jump_power)
     {
+        // if (magnetized) {
+        //     magnetPlatform.SetActive(false);
+        // }
+        
         creature_rigid.velocity = new Vector2(creature_rigid.velocity.x, 0f);
         Vector2 jumpDir = new Vector2((transform.up.x + Vector2.up.x) / 2, (transform.up.y + Vector2.up.y) / 2);
         creature_rigid.AddForce(jumpDir * (jumpHeight * jump_power), ForceMode2D.Impulse);
+        
+        // if (magnetized) {
+        //     magnetPlatform.SetActive(true);
+        // }
     }
     
 
 
     IEnumerator dashEffect()
     {
+        // if (magnetized) {
+        //     magnetPlatform.SetActive(false);
+        // }
+        
         isDashing = true;
         num_of_jumps++;  
         dashParticles.Play();
@@ -167,6 +177,10 @@ public class CreatureBehaviour : MonoBehaviour {
         creature_rigid.angularDrag = originalAngularDrag;
         creature_rigid.gravityScale = originalGravity;
         isDashing = false;
+        
+        // if (magnetized) {
+        //     magnetPlatform.SetActive(true);
+        // }
     }
     
 
@@ -190,7 +204,8 @@ public class CreatureBehaviour : MonoBehaviour {
 
         if (other.gameObject.CompareTag("Magnet")) {
             magnetizeTo(other.gameObject);
-            
+            // magnetized = true;
+            // magnetPlatform = GameObject.FindGameObjectWithTag("Magnet");
         }
     }
     
@@ -205,6 +220,10 @@ public class CreatureBehaviour : MonoBehaviour {
         if (other.gameObject.CompareTag("Magnet")) {
             Physics2D.gravity = new Vector2(0, -9.8f);
             gameObject.transform.rotation = originalRotation;
+            // magnetized = false;
+            // if (!magnetPlatform.activeSelf) {
+            //     magnetPlatform.SetActive(true);
+            // }
         }
         if (other.gameObject.CompareTag("Platform"))
         {
@@ -216,7 +235,7 @@ public class CreatureBehaviour : MonoBehaviour {
     private void magnetizeTo(GameObject other) {
         Vector2 dir = -(transform.position - other.gameObject.transform.position).normalized * 9.8f;
         Physics2D.gravity = dir;
-        gameObject.transform.rotation = other.transform.rotation;
+        // gameObject.transform.rotation = other.transform.rotation;
     }
 
     IEnumerator respawn()
