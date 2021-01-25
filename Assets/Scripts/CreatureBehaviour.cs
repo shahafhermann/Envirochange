@@ -223,6 +223,7 @@ public class CreatureBehaviour : MonoBehaviour {
         gameManager.playSound(1);
 
         gameManager.getCurrentLevel().getRespawnAnimator().SetTrigger("Respawn");
+        CameraEffects.ShakeOnce(0.8f, 25f);
         yield return new WaitForSeconds(1.2f);
         
         gameManager.playSound(3);
