@@ -33,7 +33,6 @@ public class PlatformBehaviour : MonoBehaviour
         if (message.Equals("VortexExplosion")) {
             // Level transition
             transitionAnimator.SetTrigger("Start");
-            // StartCoroutine(levelTransition());
         }
     }
     

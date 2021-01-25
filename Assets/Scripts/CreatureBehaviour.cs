@@ -159,6 +159,7 @@ public class CreatureBehaviour : MonoBehaviour {
         creature_rigid.angularDrag = 0f;
         creature_rigid.gravityScale = 0f;
         CameraEffects.ShakeOnce(0.3f, 10f);
+        gameManager.playSound(0);
         yield return new WaitForSeconds(dashTime);
         
         dashParticles.Stop();
@@ -227,13 +228,21 @@ public class CreatureBehaviour : MonoBehaviour {
 
     IEnumerator respawn()
     {
-        // trail.enabled = false;
+        gameManager.playSound(1);
+
+        gameManager.getCurrentLevel().getRespawnAnimator().SetTrigger("Respawn");
+        yield return new WaitForSeconds(1.2f);
+        
+        gameManager.playSound(3);
+        yield return new WaitForSeconds(0.28f);
+        
         trail.SetActive(false);
         num_of_jumps = 0;
         creature_rigid.transform.position = gameManager.getCurrentLevel().getRespawnPosition() 
-                                            + new Vector3(0, 0.15f, 0);
-        yield return new WaitForSeconds(0.2f);
-        // trail.enabled = false;
+                                            + new Vector3(0, 0.25f, 0);
+        // yield return new WaitForSeconds(0.2f);
+        
+        
         trail.SetActive(true);
     }
 }

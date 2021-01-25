@@ -14,4 +14,8 @@ public class Level {
     public Vector3 getRespawnPosition() {
         return platforms[0].platform.transform.position;
     }
+
+    public Animator getRespawnAnimator() {
+        return platforms[0].platform.GetComponent<Animator>();
+    }
 }
