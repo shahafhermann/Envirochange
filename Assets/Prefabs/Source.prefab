@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8737043990025085959}
-  - component: {fileID: 4517065688068415034}
+  - component: {fileID: 8520509926521977821}
   m_Layer: 0
   m_Name: TouchCollider
   m_TagString: Platform
@@ -31,8 +31,8 @@ Transform:
   m_Father: {fileID: 7874086739786954722}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &4517065688068415034
-PolygonCollider2D:
+--- !u!61 &8520509926521977821
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -41,10 +41,10 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0024373084, y: 0.15842581}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -54,14 +54,9 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.46915317, y: 0.09596288}
-      - {x: -0.4725309, y: 0.09429398}
-      - {x: -0.3898635, y: 0.057769418}
-      - {x: -0.20524454, y: 0.047890186}
-      - {x: 0.3071773, y: 0.05179155}
-      - {x: 0.4072969, y: 0.05856979}
+  serializedVersion: 2
+  m_Size: {x: 0.96100295, y: 0.14693832}
+  m_EdgeRadius: 0
 --- !u!1 &5420329480995233742
 GameObject:
   m_ObjectHideFlags: 0
@@ -118,12 +113,12 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.80812216, y: 0.13397813}
-      - {x: 0.6280441, y: 0.10101104}
-      - {x: 0.2433815, y: 0.10035753}
-      - {x: -0.18841648, y: 0.10207844}
-      - {x: -0.56639194, y: 0.10792518}
-      - {x: -0.7948117, y: 0.14111662}
+    - - {x: 0.820908, y: 0.18512188}
+      - {x: 0.6587304, y: 0.1828407}
+      - {x: 0.26895335, y: 0.18474463}
+      - {x: -0.1577303, y: 0.18646555}
+      - {x: -0.53826296, y: 0.18975481}
+      - {x: -0.7999261, y: 0.18970315}
       - {x: -0.9417291, y: 0.18775561}
       - {x: -0.96280956, y: 0.01236248}
       - {x: -0.9493246, y: -0.12121725}

@@ -56,12 +56,12 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.80812216, y: 0.13397813}
-      - {x: 0.6280441, y: 0.10101104}
-      - {x: 0.2433815, y: 0.10035753}
-      - {x: -0.18841648, y: 0.10207844}
-      - {x: -0.56639194, y: 0.10792518}
-      - {x: -0.7948117, y: 0.14111662}
+    - - {x: 0.80812216, y: 0.1806173}
+      - {x: 0.6280441, y: 0.17874306}
+      - {x: 0.25892803, y: 0.17808956}
+      - {x: -0.1767567, y: 0.17981046}
+      - {x: -0.5625054, y: 0.17788404}
+      - {x: -0.7831519, y: 0.18386921}
       - {x: -0.9417291, y: 0.18775561}
       - {x: -0.96280956, y: 0.01236248}
       - {x: -0.9493246, y: -0.12121725}
@@ -5017,7 +5017,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6584349350811353495}
-  - component: {fileID: 7198408467732014080}
+  - component: {fileID: 3423448864161500474}
   m_Layer: 0
   m_Name: TouchCollider
   m_TagString: Platform
@@ -5033,14 +5033,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7483859070405448555}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.002, y: 0.01, z: -0.1059169}
+  m_LocalPosition: {x: -0.03, y: 0.14, z: -0.1059169}
   m_LocalScale: {x: 6.2258, y: 6.2258, z: 3.1129}
   m_Children: []
   m_Father: {fileID: 2275876974365010602}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &7198408467732014080
-PolygonCollider2D:
+--- !u!61 &3423448864161500474
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -5049,10 +5049,10 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0035265386, y: 0.13518602}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -5062,11 +5062,6 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.46915317, y: 0.09596288}
-      - {x: -0.4725309, y: 0.09429398}
-      - {x: -0.3898635, y: 0.057769418}
-      - {x: -0.20524454, y: 0.047890186}
-      - {x: 0.3071773, y: 0.05179155}
-      - {x: 0.4072969, y: 0.05856979}
+  serializedVersion: 2
+  m_Size: {x: 0.9506276, y: 0.14656469}
+  m_EdgeRadius: 0
