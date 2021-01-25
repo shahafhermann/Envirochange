@@ -988,6 +988,7 @@ GameObject:
   - component: {fileID: 519420034}
   - component: {fileID: 519420036}
   - component: {fileID: 519420035}
+  - component: {fileID: 519420037}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1204,7 +1205,7 @@ MonoBehaviour:
   _source: 0
   _blendRatio: 0.5
   _preferDepthNormals: 0
-  _depthRepeat: 2.1
+  _depthRepeat: -0.06
   _validateNormals: 0
   _motionOverlayAmplitude: 10
   _motionVectorsAmplitude: 50
@@ -1224,6 +1225,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _intensity: 0.18
   _shader: {fileID: 4800000, guid: ba40dc630e1d9417cb9ea22586ece1e1, type: 3}
+--- !u!114 &519420037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 870b9a8f0f82f4f56800cc427bcd1025, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scanLineJitter: 0.2
+  _verticalJump: 0.032
+  _horizontalShake: 0.131
+  _colorDrift: 0.228
+  _shader: {fileID: 4800000, guid: da33272284ea24f208f36998880990be, type: 3}
 --- !u!1001 &634077141
 PrefabInstance:
   m_ObjectHideFlags: 0
