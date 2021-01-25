@@ -15,6 +15,7 @@ public class Platform {
     public void move() {
         int maxLength = Mathf.Max(positions.Length, zRotations.Length);
         if (maxLength > 0) {
+            
             curIndex = (curIndex + 1) % maxLength;  // Advance to next index
                 
             if (curIndex < positions.Length) {  // Change position
@@ -24,6 +25,7 @@ public class Platform {
             if (curIndex < zRotations.Length) {  // Change rotation
                 platform.transform.Rotate(new Vector3(0,0,1f), zRotations[curIndex]);
             }
+
         }
         
         // switch (changeType) {
