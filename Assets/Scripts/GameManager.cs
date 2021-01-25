@@ -18,17 +18,23 @@ public class GameManager : MonoBehaviour {
     public float startChangeAfterSeconds = 3f;
     public float changeRate = 3f;
 
-    private float goalAnimationTime = 0.25f;
+    private float goalAnimationTime = 2.26f;
     // public Animator goalAnimator;
     private Animator endPlatformAnimator;
 
-    public Animator transitionAnimator;
-    [Range(0.1f, 2f)]
-    public float transitionTime = 1f;
+    [HideInInspector]
+    public static bool exploded = false;
+    public static Animator transitionAnimator;
+    // [Range(0.1f, 2f)]
+    private float transitionTime = 0.1f;
 
     // Will be refactored later
     public Level[] levels;
     private int curLevel = 0;
+
+    private void Awake() {
+        transitionAnimator = GameObject.Find("Crossfade").gameObject.GetComponent<Animator>();
+    }
 
     void Start() {
         Time.timeScale = 1;
@@ -40,7 +46,10 @@ public class GameManager : MonoBehaviour {
     
     void Update()
     {
-        
+        // if (exploded) {
+        //     StartCoroutine(levelTransitionHelper());
+        //     exploded = false;
+        // }
     }
 
     /**
@@ -48,9 +57,17 @@ public class GameManager : MonoBehaviour {
      */
     private void changeEnvironment() {
         foreach (Platform platform in levels[curLevel].GetPlatforms()) {
+            // if (platform.changeType == ChangeType.Movement) {
+            //     StartCoroutine(animateMove(platform.platform));
+            // }
             platform.move();
         }
     }
+    
+    // IEnumerator animateMove(GameObject platform) {
+    //     platform.GetComponent<Animator>().SetTrigger("Move");
+    //     yield return new WaitForSeconds(2f);
+    // }
 
     public void completeLevel() {
         // if (curLevel < levels.Length - 1) { 
@@ -64,13 +81,15 @@ public class GameManager : MonoBehaviour {
     IEnumerator loadLevel(int levelIndex) {
         endPlatformAnimator.SetTrigger("End");
         yield return new WaitForSeconds(goalAnimationTime);
-        
-        // Level transition
-        transitionAnimator.SetTrigger("Start");
-        yield return new WaitForSeconds(transitionTime);
-        
+
         SceneManager.LoadScene(levelIndex);
     }
+
+    // IEnumerator levelTransitionHelper() {
+    //     // Level transition
+    //     transitionAnimator.SetTrigger("Start");
+    //     yield return new WaitForSeconds(transitionTime);
+    // }
 
     public Level getCurrentLevel() {
         return levels[curLevel];
