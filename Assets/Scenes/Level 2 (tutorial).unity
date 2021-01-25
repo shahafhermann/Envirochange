@@ -5818,7 +5818,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fc18a55c333d51489e5ee49b3cbff50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _falloff: 0.199
+  _falloff: 0
   _shader: {fileID: 4800000, guid: 89a223cbeee1935419811f8736c0a9b3, type: 3}
 --- !u!114 &519420034
 MonoBehaviour:
@@ -5832,7 +5832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a3a070408aa941ab83ae10be1708848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _intensity: 0.18
+  _intensity: 0
   _shader: {fileID: 4800000, guid: ba40dc630e1d9417cb9ea22586ece1e1, type: 3}
 --- !u!114 &519420035
 MonoBehaviour:
@@ -5847,7 +5847,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _source: 0
-  _blendRatio: 0.5
+  _blendRatio: 0
   _preferDepthNormals: 0
   _depthRepeat: -0.06
   _validateNormals: 0
@@ -5867,10 +5867,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 870b9a8f0f82f4f56800cc427bcd1025, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scanLineJitter: 0.2
-  _verticalJump: 0.032
-  _horizontalShake: 0.131
-  _colorDrift: 0.228
+  _scanLineJitter: 0.5
+  _verticalJump: 0
+  _horizontalShake: 0.2
+  _colorDrift: 0
   _shader: {fileID: 4800000, guid: da33272284ea24f208f36998880990be, type: 3}
 --- !u!114 &519420037
 MonoBehaviour:
@@ -5884,7 +5884,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54d74953ca94c4954aebfbbd617979ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 0.3
+  duration: 0.4
 --- !u!1001 &521381572
 PrefabInstance:
   m_ObjectHideFlags: 0
