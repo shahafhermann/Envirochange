@@ -224,16 +224,10 @@ public class CreatureBehaviour : MonoBehaviour {
         gameManager.playSound(1);
 
         gameManager.getCurrentLevel().getRespawnAnimator().SetTrigger("Respawn");
-        CameraEffects.ShakeOnce(0.8f, 25f);
-        Camera.main.GetComponent<DigitalGlitch>().enabled = true;
-        Camera.main.GetComponent<Vision>().enabled = true;
-        Camera.main.GetComponent<AnalogGlitch>().enabled = true;
+        gameManager.apply_death_effect();
+
         yield return new WaitForSeconds(1.2f);
-        
         gameManager.playSound(3);
-        Camera.main.GetComponent<DigitalGlitch>().enabled = false;
-        Camera.main.GetComponent<Vision>().enabled = false;
-        Camera.main.GetComponent<AnalogGlitch>().enabled = false;
         yield return new WaitForSeconds(0.28f);
 
         trail.SetActive(false);
