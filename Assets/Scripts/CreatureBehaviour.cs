@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.TextCore;
 using DitzeGames.Effects;
+using Kino;
 using UnityEngine.InputSystem;
 
 public class CreatureBehaviour : MonoBehaviour {
@@ -224,10 +225,14 @@ public class CreatureBehaviour : MonoBehaviour {
 
         gameManager.getCurrentLevel().getRespawnAnimator().SetTrigger("Respawn");
         CameraEffects.ShakeOnce(0.8f, 25f);
+        Camera.main.GetComponent<DigitalGlitch>().enabled = true;
+        Camera.main.GetComponent<Vision>().enabled = true;
         yield return new WaitForSeconds(1.2f);
         
         gameManager.playSound(3);
         yield return new WaitForSeconds(0.28f);
+        Camera.main.GetComponent<DigitalGlitch>().enabled = false;
+        Camera.main.GetComponent<Vision>().enabled = false;
         
         trail.SetActive(false);
         num_of_jumps = 0;
