@@ -17,7 +17,7 @@ public class CreatureBehaviour : MonoBehaviour {
     public float groundSpeed = 5f;
     public float midAir = 5f;
     public int MAX_JUMPS_ROW = 2;
-    public int num_of_jumps;
+    private int num_of_jumps;
     private float turnSpeed;
 
     private Quaternion originalRotation;
@@ -30,7 +30,7 @@ public class CreatureBehaviour : MonoBehaviour {
 
     private bool allowMovement = true;
     
-    public bool last_resort_jump = true;
+    private bool last_resort_jump = true;
 
     private PlayerInput  controls;
 
@@ -87,33 +87,6 @@ public class CreatureBehaviour : MonoBehaviour {
         }
         
         if (allowMovement) {
-            // if (Input.GetKey(KeyCode.LeftArrow) && !isDashing)
-            // {
-            //     creature_rigid.transform.position += -transform.right * (turnSpeed * Time.deltaTime);
-            //     eyeChild.transform.Rotate(0,0,turnSpeed );
-            // }
-            // if (Input.GetKey(KeyCode.RightArrow) && !isDashing)
-            // {
-            //     creature_rigid.transform.position += transform.right * (turnSpeed * Time.deltaTime);
-            //     eyeChild.transform.Rotate(0,0,-turnSpeed );
-            // }
-            //
-            //
-            // if (Input.GetKey(KeyCode.Space) && num_of_jumps == 0) {
-            //     _jump(1f);
-            // }
-            // else if (Input.GetKeyDown(KeyCode.Space) && last_resort_jump)
-            // {
-            //     _jump(0.45f);
-            //     last_resort_jump = false;
-            // }
-            //
-            //
-            // else if (allowDashing && (num_of_jumps < MAX_JUMPS_ROW) && Input.GetKey(KeyCode.E) && !isDashing)
-            // {
-            //     StartCoroutine(dashEffect());
-            // }
-            Debug.Log(controls.Creature.movement.ReadValue<Vector2>());
             float x_movementInput = controls.Creature.movement.ReadValue<Vector2>().x;
 
             if (x_movementInput < 0f && !isDashing)
@@ -157,11 +130,6 @@ public class CreatureBehaviour : MonoBehaviour {
         creature_rigid.AddForce(jumpDir * (jumpHeight * jump_power), ForceMode2D.Impulse);
     }
     
-    // IEnumerator get_small_jump()
-    // {
-    //     yield return new WaitForSeconds(0.45f);
-    //     last_resort_jump = true;
-    // }
 
 
     IEnumerator dashEffect()
@@ -172,17 +140,12 @@ public class CreatureBehaviour : MonoBehaviour {
         
         Vector2 direction = Vector3.zero;
         direction += controls.Creature.movement.ReadValue<Vector2>();
-        // if (Input.GetKey(KeyCode.UpArrow)) { direction += Vector2.up; }
-        // if (Input.GetKey(KeyCode.DownArrow)) { direction += Vector2.down; }
-        // if (Input.GetKey(KeyCode.LeftArrow)) { direction += Vector2.left; }
-        // if (Input.GetKey(KeyCode.RightArrow)) { direction += Vector2.right; }
 
         if (direction == Vector2.zero)
         {
             direction += Vector2.up;
         }
         direction.Normalize();
-        // trail.enabled = true;
         trail.SetActive(true);
         creature_rigid.velocity = direction * dashSpeed;
         float originalDrag = creature_rigid.drag;
