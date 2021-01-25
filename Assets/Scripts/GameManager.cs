@@ -31,9 +31,14 @@ public class GameManager : MonoBehaviour {
     // Will be refactored later
     public Level[] levels;
     private int curLevel = 0;
+    
+    // 0 = dash, 1 = death, 2 = nextLevel, 3 = respawn, 4 = magneticField
+    public AudioClip[] sounds;
+    private AudioSource soundFX;
 
     private void Awake() {
         transitionAnimator = GameObject.Find("Crossfade").gameObject.GetComponent<Animator>();
+        soundFX = gameObject.GetComponent<AudioSource>();
     }
 
     void Start() {
@@ -73,14 +78,25 @@ public class GameManager : MonoBehaviour {
         // if (curLevel < levels.Length - 1) { 
         //     curLevel++;
         // }
-        
+
         StartCoroutine(loadLevel(SceneManager.GetActiveScene().buildIndex + 1));
         
+    }
+
+    public void playSound(int index) {
+        soundFX.clip = sounds[index];
+        if (soundFX.isPlaying) {
+            soundFX.Stop();
+        }
+        soundFX.Play();
     }
     
     IEnumerator loadLevel(int levelIndex) {
         endPlatformAnimator.SetTrigger("End");
-        yield return new WaitForSeconds(goalAnimationTime);
+        yield return new WaitForSeconds(1f);
+        
+        playSound(2);
+        yield return new WaitForSeconds(goalAnimationTime - 1f);
 
         SceneManager.LoadScene(levelIndex);
     }
