@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour {
     public static bool exploded = false;
     public static Animator transitionAnimator;
     // [Range(0.1f, 2f)]
-    private float transitionTime = 0.1f;
+    // private float transitionTime = 0.1f;
 
     // Will be refactored later
     public Level[] levels;
