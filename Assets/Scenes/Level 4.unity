@@ -501,6 +501,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6266267617765302345, guid: 244e427dec38e402e91ba216f0ec0a79, type: 3}
     - target: {fileID: 3173754911764399569, guid: 43ea76872f44447d99403e8fa01d38d1, type: 3}
+      propertyPath: levels.Array.data[0].platforms.Array.data[1].changeType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3173754911764399569, guid: 43ea76872f44447d99403e8fa01d38d1, type: 3}
+      propertyPath: levels.Array.data[0].platforms.Array.data[2].changeType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3173754911764399569, guid: 43ea76872f44447d99403e8fa01d38d1, type: 3}
       propertyPath: levels.Array.data[1].platforms.Array.data[1].changeType
       value: 0
       objectReference: {fileID: 0}
