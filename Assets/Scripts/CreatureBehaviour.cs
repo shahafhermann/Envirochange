@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.TextCore;
 using DitzeGames.Effects;
+using UnityEngine.InputSystem;
 
 public class CreatureBehaviour : MonoBehaviour {
     private GameManager gameManager;
@@ -16,7 +17,7 @@ public class CreatureBehaviour : MonoBehaviour {
     public float groundSpeed = 5f;
     public float midAir = 5f;
     public int MAX_JUMPS_ROW = 2;
-    private int num_of_jumps;
+    public int num_of_jumps;
     private float turnSpeed;
 
     private Quaternion originalRotation;
@@ -28,6 +29,10 @@ public class CreatureBehaviour : MonoBehaviour {
     public bool allowDashing = false;
 
     private bool allowMovement = true;
+    
+    public bool last_resort_jump = true;
+
+    private PlayerInput  controls;
 
     // private Animator animator;
     // private Vector2 _movement;
@@ -40,6 +45,17 @@ public class CreatureBehaviour : MonoBehaviour {
 
     private void Awake() {
         gameManager = FindObjectOfType<GameManager>();
+        controls = new PlayerInput();
+    }
+
+    private void OnEnable()
+    {
+        controls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Disable();
     }
 
     // Start is called before the first frame update
@@ -71,27 +87,59 @@ public class CreatureBehaviour : MonoBehaviour {
         }
         
         if (allowMovement) {
-            if (Input.GetKey(KeyCode.LeftArrow) && !isDashing)
+            // if (Input.GetKey(KeyCode.LeftArrow) && !isDashing)
+            // {
+            //     creature_rigid.transform.position += -transform.right * (turnSpeed * Time.deltaTime);
+            //     eyeChild.transform.Rotate(0,0,turnSpeed );
+            // }
+            // if (Input.GetKey(KeyCode.RightArrow) && !isDashing)
+            // {
+            //     creature_rigid.transform.position += transform.right * (turnSpeed * Time.deltaTime);
+            //     eyeChild.transform.Rotate(0,0,-turnSpeed );
+            // }
+            //
+            //
+            // if (Input.GetKey(KeyCode.Space) && num_of_jumps == 0) {
+            //     _jump(1f);
+            // }
+            // else if (Input.GetKeyDown(KeyCode.Space) && last_resort_jump)
+            // {
+            //     _jump(0.45f);
+            //     last_resort_jump = false;
+            // }
+            //
+            //
+            // else if (allowDashing && (num_of_jumps < MAX_JUMPS_ROW) && Input.GetKey(KeyCode.E) && !isDashing)
+            // {
+            //     StartCoroutine(dashEffect());
+            // }
+            Debug.Log(controls.Creature.movement.ReadValue<Vector2>());
+            float x_movementInput = controls.Creature.movement.ReadValue<Vector2>().x;
+
+            if (x_movementInput < 0f && !isDashing)
             {
                 creature_rigid.transform.position += -transform.right * (turnSpeed * Time.deltaTime);
                 eyeChild.transform.Rotate(0,0,turnSpeed );
             }
-            if (Input.GetKey(KeyCode.RightArrow) && !isDashing)
+            if (x_movementInput > 0f && !isDashing)
             {
                 creature_rigid.transform.position += transform.right * (turnSpeed * Time.deltaTime);
                 eyeChild.transform.Rotate(0,0,-turnSpeed );
             }
-        
-        
-            if (Input.GetKey(KeyCode.Space) && num_of_jumps == 0) {
-                //creature_rigid.AddForce(new Vector2(0, jumpHeight * Time.fixedDeltaTime), ForceMode2D.Impulse);
-                creature_rigid.velocity = new Vector2(creature_rigid.velocity.x, 0f);
-                Vector2 jumpDir = new Vector2((transform.up.x + Vector2.up.x) / 2, (transform.up.y + Vector2.up.y) / 2);
-                creature_rigid.AddForce(jumpDir * jumpHeight, ForceMode2D.Impulse);
+            
+            
+            if (controls.Creature.jump.triggered && (num_of_jumps == 0 || last_resort_jump))
+            {
+                float jump_power = 1f;
+                if (last_resort_jump)
+                {
+                    jump_power = 0.35f;
+                    last_resort_jump = false;
+                }
+                _jump(jump_power);
             }
-        
-
-            else if (allowDashing && (num_of_jumps < MAX_JUMPS_ROW) && Input.GetKey(KeyCode.E) && !isDashing)
+            
+            else if (allowDashing && (num_of_jumps < MAX_JUMPS_ROW) && controls.Creature.dash.triggered && !isDashing)
             {
                 StartCoroutine(dashEffect());
             }
@@ -102,34 +150,18 @@ public class CreatureBehaviour : MonoBehaviour {
         // animator.SetFloat("Speed", _movement.sqrMagnitude);
     }
 
-    private void FixedUpdate() {
-        // if (allowMovement) {
-        //     if (Input.GetKey(KeyCode.LeftArrow) && !isDashing)
-        //     {
-        //         creature_rigid.transform.position += -transform.right * (turnSpeed * Time.deltaTime);
-        //         eyeChild.transform.Rotate(0,0,turnSpeed );
-        //     }
-        //     if (Input.GetKey(KeyCode.RightArrow) && !isDashing)
-        //     {
-        //         creature_rigid.transform.position += transform.right * (turnSpeed * Time.deltaTime);
-        //         eyeChild.transform.Rotate(0,0,-turnSpeed );
-        //     }
-        //
-        //
-        //     if (Input.GetKey(KeyCode.Space) && num_of_jumps == 0) {
-        //         //creature_rigid.AddForce(new Vector2(0, jumpHeight * Time.fixedDeltaTime), ForceMode2D.Impulse);
-        //         creature_rigid.velocity = new Vector2(creature_rigid.velocity.x, 0f);
-        //         Vector2 jumpDir = new Vector2((transform.up.x + Vector2.up.x) / 2, (transform.up.y + Vector2.up.y) / 2);
-        //         creature_rigid.AddForce(jumpDir * jumpHeight, ForceMode2D.Impulse);
-        //     }
-        //
-        //
-        //     else if (allowDashing && (num_of_jumps < MAX_JUMPS_ROW) && Input.GetKey(KeyCode.E) && !isDashing)
-        //     {
-        //         StartCoroutine(dashEffect());
-        //     }
-        // }
+    private void _jump(float jump_power)
+    {
+        creature_rigid.velocity = new Vector2(creature_rigid.velocity.x, 0f);
+        Vector2 jumpDir = new Vector2((transform.up.x + Vector2.up.x) / 2, (transform.up.y + Vector2.up.y) / 2);
+        creature_rigid.AddForce(jumpDir * (jumpHeight * jump_power), ForceMode2D.Impulse);
     }
+    
+    // IEnumerator get_small_jump()
+    // {
+    //     yield return new WaitForSeconds(0.45f);
+    //     last_resort_jump = true;
+    // }
 
 
     IEnumerator dashEffect()
@@ -139,10 +171,11 @@ public class CreatureBehaviour : MonoBehaviour {
         dashParticles.Play();
         
         Vector2 direction = Vector3.zero;
-        if (Input.GetKey(KeyCode.UpArrow)) { direction += Vector2.up; }
-        if (Input.GetKey(KeyCode.DownArrow)) { direction += Vector2.down; }
-        if (Input.GetKey(KeyCode.LeftArrow)) { direction += Vector2.left; }
-        if (Input.GetKey(KeyCode.RightArrow)) { direction += Vector2.right; }
+        direction += controls.Creature.movement.ReadValue<Vector2>();
+        // if (Input.GetKey(KeyCode.UpArrow)) { direction += Vector2.up; }
+        // if (Input.GetKey(KeyCode.DownArrow)) { direction += Vector2.down; }
+        // if (Input.GetKey(KeyCode.LeftArrow)) { direction += Vector2.left; }
+        // if (Input.GetKey(KeyCode.RightArrow)) { direction += Vector2.right; }
 
         if (direction == Vector2.zero)
         {
@@ -172,24 +205,14 @@ public class CreatureBehaviour : MonoBehaviour {
     }
     
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
+
+    private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.CompareTag("Platform"))
         {
             num_of_jumps = 0;
+            last_resort_jump = false;
         }
-    }
-
-    private void OnCollisionExit2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Platform"))
-        {
-            num_of_jumps++;
-        }
-    }
-
-
-    private void OnTriggerEnter2D(Collider2D other) {
+        
         if (other.gameObject.CompareTag("Goal")) {
             allowMovement = false;
             gameManager.completeLevel();
@@ -205,6 +228,7 @@ public class CreatureBehaviour : MonoBehaviour {
             
         }
     }
+    
 
     private void OnTriggerStay2D(Collider2D other) {
         if (other.gameObject.CompareTag("Magnet")) {
@@ -216,6 +240,11 @@ public class CreatureBehaviour : MonoBehaviour {
         if (other.gameObject.CompareTag("Magnet")) {
             Physics2D.gravity = new Vector2(0, -9.8f);
             gameObject.transform.rotation = originalRotation;
+        }
+        if (other.gameObject.CompareTag("Platform"))
+        {
+            num_of_jumps++;
+            last_resort_jump = true;
         }
     }
 

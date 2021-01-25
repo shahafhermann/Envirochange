@@ -221,7 +221,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb88f8ec5971a492a9095d841fa462f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
   jumpHeight: 42
   groundSpeed: 5
   midAir: 5
