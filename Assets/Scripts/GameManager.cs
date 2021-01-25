@@ -32,10 +32,12 @@ public class GameManager : MonoBehaviour {
     // 0 = dash, 1 = death, 2 = nextLevel, 3 = respawn, 4 = magneticField
     public AudioClip[] sounds;
     private AudioSource soundFX;
+    private deathEffect death_effect;
 
     private void Awake() {
         transitionAnimator = GameObject.Find("Crossfade").gameObject.GetComponent<Animator>();
         soundFX = gameObject.GetComponent<AudioSource>();
+        
     }
 
     void Start() {
@@ -44,6 +46,7 @@ public class GameManager : MonoBehaviour {
         InvokeRepeating(nameof(changeEnvironment), startChangeAfterSeconds, changeRate);
         endPlatformAnimator = levels[curLevel].GetPlatforms()[levels[curLevel].GetPlatforms().Length - 1]
                                 .platform.GetComponent<Animator>();
+        death_effect = Camera.main.GetComponent<deathEffect>();
     }
 
     /**
@@ -103,5 +106,10 @@ public class GameManager : MonoBehaviour {
 
     public Level getCurrentLevel() {
         return levels[curLevel];
+    }
+
+    public void apply_death_effect()
+    {
+        death_effect.death();
     }
 }
