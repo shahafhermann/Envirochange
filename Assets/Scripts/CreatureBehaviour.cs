@@ -40,6 +40,7 @@ public class CreatureBehaviour : MonoBehaviour {
     public GameObject trail;
     
     private Transform eyeChild;
+    private Animator eye_animator;
 
     private void Awake() {
         gameManager = FindObjectOfType<GameManager>();
@@ -67,6 +68,7 @@ public class CreatureBehaviour : MonoBehaviour {
         dashParticles.Stop();
         isDashing = false;
         eyeChild = gameObject.transform.GetChild(3);
+        eye_animator = eyeChild.GetComponent<Animator>();
     }
 
     private void Update()
@@ -82,18 +84,25 @@ public class CreatureBehaviour : MonoBehaviour {
 
             if (x_movementInput < 0f && !isDashing)
             {
+                eye_animator.enabled = false;
                 creature_rigid.transform.position += -transform.right * (turnSpeed * Time.deltaTime);
                 eyeChild.transform.Rotate(0,0,turnSpeed );
             }
             if (x_movementInput > 0f && !isDashing)
             {
+                eye_animator.enabled = false;
                 creature_rigid.transform.position += transform.right * (turnSpeed * Time.deltaTime);
                 eyeChild.transform.Rotate(0,0,-turnSpeed );
+            }
+            if (x_movementInput == 0f)
+            {
+                eye_animator.enabled = true;
             }
             
             
             if (controls.Creature.jump.triggered && (num_of_jumps == 0 || last_resort_jump))
             {
+                eye_animator.SetBool("nextLevel", true);
                 float jump_power = 1f;
                 if (last_resort_jump)
                 {
@@ -108,6 +117,7 @@ public class CreatureBehaviour : MonoBehaviour {
                 StartCoroutine(dashEffect());
             }
         }
+
     }
 
     private void _jump(float jump_power)

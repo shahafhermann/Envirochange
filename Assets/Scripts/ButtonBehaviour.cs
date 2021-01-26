@@ -15,13 +15,28 @@ public class ButtonBehaviour : MonoBehaviour {
 
     private AudioSource soundFX;
 
+    private PlayerInput controls;
+
 
     private void Awake() {
         soundFX = gameObject.GetComponent<AudioSource>();
+        controls = new PlayerInput();
+    }
+    private void OnEnable()
+    {
+        controls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Disable();
     }
 
     private void Update() {
-        // TODO detect if space / jump button pressed. If so, call PlayGame
+        if (controls.Creature.jump.triggered)
+        {
+            playGame();
+        }
     }
 
     public void playGame() {
