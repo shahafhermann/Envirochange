@@ -9,6 +9,7 @@ TagManager:
   - Bottom
   - Magnet
   - Crossfade
+  - Laser
   layers:
   - Default
   - TransparentFX
