@@ -20,6 +20,10 @@ public class ButtonBehaviour : MonoBehaviour {
         soundFX = gameObject.GetComponent<AudioSource>();
     }
 
+    private void Update() {
+        // TODO detect if space / jump button pressed. If so, call PlayGame
+    }
+
     public void playGame() {
         StartCoroutine(loadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
