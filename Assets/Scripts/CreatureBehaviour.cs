@@ -21,6 +21,8 @@ public class CreatureBehaviour : MonoBehaviour {
     private int num_of_jumps;
     private float turnSpeed;
 
+    private bool isRespawning = false; 
+
     private Quaternion originalRotation;
 
     public float dashSpeed;
@@ -163,9 +165,11 @@ public class CreatureBehaviour : MonoBehaviour {
             gameManager.completeLevel();
         }
         
-        if (other.gameObject.CompareTag("Bottom"))
-        {
-            StartCoroutine(respawn());
+        if (other.gameObject.CompareTag("Bottom") || other.gameObject.CompareTag("Laser")) {
+            if (!isRespawning) {
+                isRespawning = true;
+                StartCoroutine(respawn());
+            }
         }
 
         if (other.gameObject.CompareTag("Magnet")) {
@@ -215,5 +219,7 @@ public class CreatureBehaviour : MonoBehaviour {
         
         
         trail.SetActive(true);
+
+        isRespawning = false;
     }
 }
