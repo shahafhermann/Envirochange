@@ -162,6 +162,15 @@ public class CreatureBehaviour : MonoBehaviour {
         
     }
 
+    private void OnCollisionEnter2D(Collision2D other) {
+        if (other.gameObject.CompareTag("Laser")) {
+            if (!isRespawning) {
+                isRespawning = true;
+                StartCoroutine(respawn());
+            }
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.CompareTag("Platform"))
         {
@@ -170,10 +179,12 @@ public class CreatureBehaviour : MonoBehaviour {
         }
         
         if (other.gameObject.CompareTag("Goal")) {
-            allowMovement = false;
-            eye_animator.enabled = true;
-            eye_animator.SetBool("nextLevel", true);
-            gameManager.completeLevel();
+            if (!isRespawning) {
+                allowMovement = false;
+                eye_animator.enabled = true;
+                eye_animator.SetBool("nextLevel", true);
+                gameManager.completeLevel();
+            }
         }
         
         if (other.gameObject.CompareTag("Bottom") || other.gameObject.CompareTag("Laser")) {
@@ -185,6 +196,8 @@ public class CreatureBehaviour : MonoBehaviour {
 
         if (other.gameObject.CompareTag("Magnet")) {
             magnetizeTo(other.gameObject);
+            
+            gameManager.playSound(4);
         }
     }
     
@@ -200,6 +213,8 @@ public class CreatureBehaviour : MonoBehaviour {
         if (other.gameObject.CompareTag("Magnet")) {
             Physics2D.gravity = new Vector2(0, -9.8f);
             gameObject.transform.rotation = originalRotation;
+            
+            gameManager.playSound(4);
         }
         if (other.gameObject.CompareTag("Platform"))
         {
