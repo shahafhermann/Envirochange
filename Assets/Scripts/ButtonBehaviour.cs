@@ -35,7 +35,12 @@ public class ButtonBehaviour : MonoBehaviour {
     private void Update() {
         if (controls.Creature.jump.triggered)
         {
-            playGame();
+            if (SceneManager.GetActiveScene().buildIndex == SceneManager.sceneCountInBuildSettings - 1) {
+                restartGame();
+            }
+            else {
+                playGame();
+            }
         }
         else if (controls.Creature.dash.triggered)
         {
@@ -45,6 +50,10 @@ public class ButtonBehaviour : MonoBehaviour {
 
     public void playGame() {
         StartCoroutine(loadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+    }
+
+    public void restartGame() {
+        StartCoroutine(loadLevel(0));
     }
 
     public void exitGame()
