@@ -35,7 +35,7 @@ public class CreatureBehaviour : MonoBehaviour {
     
     private bool last_resort_jump = true;
 
-    private PlayerInput  controls;
+    private PlayerInput controls;
     
     public GameObject trail;
     
