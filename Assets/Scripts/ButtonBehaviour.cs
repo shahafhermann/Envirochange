@@ -37,10 +37,19 @@ public class ButtonBehaviour : MonoBehaviour {
         {
             playGame();
         }
+        else if (controls.Creature.dash.triggered)
+        {
+            exitGame();
+        }
     }
 
     public void playGame() {
         StartCoroutine(loadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+    }
+
+    public void exitGame()
+    {
+        Application.Quit();
     }
     
     IEnumerator loadLevel(int levelIndex) {
