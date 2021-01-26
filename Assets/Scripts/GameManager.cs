@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour {
     public float timeToWaitForDisappear = 0.5f;
 
     private float goalAnimationTime = 2.26f;
-    // public Animator goalAnimator;
     private Animator endPlatformAnimator;
 
     public static Animator transitionAnimator;
