@@ -5209,7 +5209,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: db750325989564987a34393247d883b4, type: 3}
-  m_Color: {r: 0.063634746, g: 0.19823632, b: 0.24528301, a: 1}
+  m_Color: {r: 0.06666667, g: 0.18039216, b: 0.21960784, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5943,11 +5943,11 @@ PrefabInstance:
     - target: {fileID: 6200800329412641119, guid: 42b6825a197b14fc18a489913184ad83, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: cacc7dda8d05847fcae127f3d267f4b5, type: 2}
+      objectReference: {fileID: 9100000, guid: 1876d428be29a42208864b7fe921d9b0, type: 2}
     - target: {fileID: 9004265238410115855, guid: 42b6825a197b14fc18a489913184ad83, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 75b47daa7429b42e0a2131a4ba89641c, type: 3}
+      objectReference: {fileID: 21300000, guid: 1d0d02ea481ed4011aa33b6a7c9c8372, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42b6825a197b14fc18a489913184ad83, type: 3}
 --- !u!4 &521381573 stripped
