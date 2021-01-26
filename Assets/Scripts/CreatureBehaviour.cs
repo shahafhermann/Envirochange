@@ -102,7 +102,6 @@ public class CreatureBehaviour : MonoBehaviour {
             
             if (controls.Creature.jump.triggered && (num_of_jumps == 0 || last_resort_jump))
             {
-                eye_animator.SetBool("nextLevel", true);
                 float jump_power = 1f;
                 if (last_resort_jump)
                 {
@@ -172,6 +171,8 @@ public class CreatureBehaviour : MonoBehaviour {
         
         if (other.gameObject.CompareTag("Goal")) {
             allowMovement = false;
+            eye_animator.enabled = true;
+            eye_animator.SetBool("nextLevel", true);
             gameManager.completeLevel();
         }
         
@@ -186,6 +187,7 @@ public class CreatureBehaviour : MonoBehaviour {
             magnetizeTo(other.gameObject);
         }
     }
+    
     
 
     private void OnTriggerStay2D(Collider2D other) {
