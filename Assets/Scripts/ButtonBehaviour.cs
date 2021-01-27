@@ -5,10 +5,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 
 public class ButtonBehaviour : MonoBehaviour {
-    // public GameObject mainMenu;
-    // public GameObject instructionsMenu;
-    // public Animator background;
-    // public float animationTime = 3f;
     public Animator transition;
     [Range(0.1f, 2f)]
     public float transitionTime = 0.5f;
@@ -62,10 +58,6 @@ public class ButtonBehaviour : MonoBehaviour {
     }
     
     IEnumerator loadLevel(int levelIndex) {
-        // Could be used to play some animation after pressing play
-        // background.SetTrigger("PlayTrigger");
-        // yield return new WaitForSeconds(animationTime);
-
         if (soundFX.isPlaying) {
             soundFX.Stop();
         }
@@ -78,6 +70,5 @@ public class ButtonBehaviour : MonoBehaviour {
         yield return new WaitForSeconds(transitionTime - 0.2f);
         
         SceneManager.LoadScene(levelIndex);
-        yield return  new WaitForSeconds(0f);  // Unnecessary if having some other returns
     }
 }
