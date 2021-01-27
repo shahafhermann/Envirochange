@@ -33,6 +33,9 @@ public class GameManager : MonoBehaviour {
     private AudioSource soundFX;
     private deathEffect death_effect;
 
+    public MusicControl musicControl;
+    public int nextLevelMusicNumber;
+
     private void Awake() {
         transitionAnimator = GameObject.Find("Crossfade").gameObject.GetComponent<Animator>();
         soundFX = gameObject.GetComponent<AudioSource>();
@@ -88,6 +91,8 @@ public class GameManager : MonoBehaviour {
     }
     
     IEnumerator loadLevel(int levelIndex) {
+        musicControl.transitionTo(nextLevelMusicNumber);
+
         endPlatformAnimator.SetTrigger("End");
         yield return new WaitForSeconds(1f);
         
@@ -96,12 +101,6 @@ public class GameManager : MonoBehaviour {
 
         SceneManager.LoadScene(levelIndex);
     }
-
-    // IEnumerator levelTransitionHelper() {
-    //     // Level transition
-    //     transitionAnimator.SetTrigger("Start");
-    //     yield return new WaitForSeconds(transitionTime);
-    // }
 
     public Level getCurrentLevel() {
         return levels[curLevel];
