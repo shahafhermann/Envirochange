@@ -5249,7 +5249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgroundColors:
   - {r: 0.09420612, g: 0.22759037, b: 0.2735849, a: 1}
-  - {r: 0.118857846, g: 0.058072276, b: 0.2735849, a: 1}
+  - {r: 0.065147735, g: 0.084346235, b: 0.2264151, a: 1}
   colorChangeDuration: 4
 --- !u!1 &203732863
 GameObject:
