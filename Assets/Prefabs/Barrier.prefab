@@ -41,13 +41,13 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 613718434915435507}
   serializedVersion: 7
-  lengthInSec: 5
+  lengthInSec: 2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -5073,13 +5073,13 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5115426243145332342}
   serializedVersion: 7
-  lengthInSec: 5
+  lengthInSec: 2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -14771,6 +14771,7 @@ GameObject:
   - component: {fileID: 1476508732478984940}
   - component: {fileID: 97539736333562809}
   - component: {fileID: 8934791106868244157}
+  - component: {fileID: 38308857557522088}
   m_Layer: 0
   m_Name: Laser
   m_TagString: Laser
@@ -14859,3 +14860,22 @@ CapsuleCollider2D:
   m_Offset: {x: 0.0000000037252903, y: 0}
   m_Size: {x: 1.0000001, y: 0.99999994}
   m_Direction: 0
+--- !u!95 &38308857557522088
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8480046584433794262}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4beaa0089cf58466e9bb49b728a8ecd9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
