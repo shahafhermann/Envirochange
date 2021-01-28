@@ -11100,6 +11100,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1369451349}
     - target: {fileID: 3173754911764399569, guid: 43ea76872f44447d99403e8fa01d38d1, type: 3}
+      propertyPath: nextLevelMusicNumber
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3173754911764399569, guid: 43ea76872f44447d99403e8fa01d38d1, type: 3}
       propertyPath: levels.Array.data[1].platforms.Array.size
       value: 2
       objectReference: {fileID: 0}
