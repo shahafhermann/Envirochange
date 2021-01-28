@@ -149,12 +149,8 @@ MonoBehaviour:
       - {x: 7.3, y: 1.62, z: 0}
       zRotations: []
       changeType: 0
-  sounds:
-  - {fileID: 8300000, guid: 0c1872506929b4b368eca8f606ca86d2, type: 3}
-  - {fileID: 8300000, guid: f9c5364430da04b6189b552a4d0654de, type: 3}
-  - {fileID: 8300000, guid: 40349ae3165704ae38810dd2c78fdda4, type: 3}
-  - {fileID: 8300000, guid: 669d9ebfa81b2450dad9d8c5e31213d3, type: 3}
-  - {fileID: 8300000, guid: 6e5b121d87e9945aea85bc05294a8257, type: 3}
+  nextLevelMusicNumber: 0
+  useSounds: 0
 --- !u!82 &4471642095728596392
 AudioSource:
   m_ObjectHideFlags: 0
