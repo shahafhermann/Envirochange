@@ -28,18 +28,20 @@ public class GameManager : MonoBehaviour {
     public Level[] levels;
     private int curLevel = 0;
     
-    // 0 = dash, 1 = death, 2 = nextLevel, 3 = respawn, 4 = magneticField
-    public AudioClip[] sounds;
-    private AudioSource soundFX;
+    // 0 = dash, 1 = death, 2 = nextLevel, 3 = respawn, 4 = magneticField, 5 = menuButton
+    // public AudioClip[] sounds;
+    // private AudioSource soundFX;
     private deathEffect death_effect;
 
     private MusicControl musicControl;
     public int nextLevelMusicNumber;
 
+    public bool useSounds = false;
+
     private void Awake() {
         transitionAnimator = GameObject.Find("Crossfade").gameObject.GetComponent<Animator>();
         // gameObject.GetComponent<AudioSource>();
-        musicControl = GameObject.Find("SoundManager").GetComponent<MusicControl>();
+        if (useSounds) musicControl = GameObject.Find("SoundManager").GetComponent<MusicControl>();
     }
 
     void Start() {
@@ -86,7 +88,7 @@ public class GameManager : MonoBehaviour {
      * Delegation method
      */
     public void playSound(int index) {
-        musicControl.playSoundFX(index);
+        if (useSounds) musicControl.playSoundFX(index);
     }
     
     IEnumerator loadLevel(int levelIndex) {
@@ -95,7 +97,7 @@ public class GameManager : MonoBehaviour {
         
         playSound(2);
         yield return new WaitForSeconds(0.9f);
-        musicControl.transitionTo(nextLevelMusicNumber);
+        if (useSounds) musicControl.transitionTo(nextLevelMusicNumber);
         yield return new WaitForSeconds(goalAnimationTime - 1.5f);
 
         SceneManager.LoadScene(levelIndex);

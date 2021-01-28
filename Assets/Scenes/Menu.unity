@@ -22412,10 +22412,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4535215118522380806, guid: 885d3c1e030dc4f52ab55c8a92dc2fa9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4535215118522380862, guid: 885d3c1e030dc4f52ab55c8a92dc2fa9, type: 3}
       propertyPath: fxSource
       value: 
       objectReference: {fileID: 4535215119008129885}
+    - target: {fileID: 4535215118522380862, guid: 885d3c1e030dc4f52ab55c8a92dc2fa9, type: 3}
+      propertyPath: soundFx.Array.size
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4535215118522380862, guid: 885d3c1e030dc4f52ab55c8a92dc2fa9, type: 3}
       propertyPath: soundFx.Array.data[0]
       value: 
@@ -22436,6 +22444,10 @@ PrefabInstance:
       propertyPath: soundFx.Array.data[4]
       value: 
       objectReference: {fileID: 8300000, guid: 6e5b121d87e9945aea85bc05294a8257, type: 3}
+    - target: {fileID: 4535215118522380862, guid: 885d3c1e030dc4f52ab55c8a92dc2fa9, type: 3}
+      propertyPath: soundFx.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: 456068457e224463d9dbcbe08d778b22, type: 3}
     m_RemovedComponents:
     - {fileID: 4535215118522380863, guid: 885d3c1e030dc4f52ab55c8a92dc2fa9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 885d3c1e030dc4f52ab55c8a92dc2fa9, type: 3}

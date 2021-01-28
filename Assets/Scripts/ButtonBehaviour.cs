@@ -9,13 +9,13 @@ public class ButtonBehaviour : MonoBehaviour {
     [Range(0.1f, 2f)]
     public float transitionTime = 0.5f;
 
-    private AudioSource soundFX;
+    // private AudioSource soundFX;
     private MusicControl musicControl;
 
     private PlayerInput controls;
 
     private void Awake() {
-        soundFX = gameObject.GetComponent<AudioSource>();
+        // soundFX = gameObject.GetComponent<AudioSource>();
         controls = new PlayerInput();
         musicControl = GameObject.Find("SoundManager").GetComponent<MusicControl>();
     }
@@ -46,6 +46,7 @@ public class ButtonBehaviour : MonoBehaviour {
     }
 
     public void playGame() {
+        musicControl.playSoundFX(5);
         StartCoroutine(loadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
@@ -59,11 +60,6 @@ public class ButtonBehaviour : MonoBehaviour {
     }
     
     IEnumerator loadLevel(int levelIndex) {
-        if (soundFX.isPlaying) {
-            soundFX.Stop();
-        }
-        soundFX.Play();
-        
         musicControl.transitionTo(1);
         
         yield return new WaitForSeconds(0.2f);
