@@ -33,13 +33,13 @@ public class GameManager : MonoBehaviour {
     private AudioSource soundFX;
     private deathEffect death_effect;
 
-    public MusicControl musicControl;
+    private MusicControl musicControl;
     public int nextLevelMusicNumber;
 
     private void Awake() {
         transitionAnimator = GameObject.Find("Crossfade").gameObject.GetComponent<Animator>();
-        soundFX = gameObject.GetComponent<AudioSource>();
-        
+        // gameObject.GetComponent<AudioSource>();
+        musicControl = GameObject.Find("SoundManager").GetComponent<MusicControl>();
     }
 
     void Start() {
@@ -82,22 +82,21 @@ public class GameManager : MonoBehaviour {
         
     }
 
+    /**
+     * Delegation method
+     */
     public void playSound(int index) {
-        soundFX.clip = sounds[index];
-        if (soundFX.isPlaying) {
-            soundFX.Stop();
-        }
-        soundFX.Play();
+        musicControl.playSoundFX(index);
     }
     
     IEnumerator loadLevel(int levelIndex) {
-        musicControl.transitionTo(nextLevelMusicNumber);
-
         endPlatformAnimator.SetTrigger("End");
         yield return new WaitForSeconds(1f);
         
         playSound(2);
-        yield return new WaitForSeconds(goalAnimationTime - 1f);
+        yield return new WaitForSeconds(0.9f);
+        musicControl.transitionTo(nextLevelMusicNumber);
+        yield return new WaitForSeconds(goalAnimationTime - 1.5f);
 
         SceneManager.LoadScene(levelIndex);
     }

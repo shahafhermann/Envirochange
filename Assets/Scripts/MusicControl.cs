@@ -28,4 +28,12 @@ public class MusicControl : MonoBehaviour {
     public void transitionTo(int snapshotIndex) {
         musicSnapshots[snapshotIndex].TransitionTo(transition);
     }
+
+    public void playSoundFX(int soundIndex) {
+        fxSource.clip = soundFx[soundIndex];
+        if (fxSource.isPlaying) {
+            fxSource.Stop();
+        }
+        fxSource.Play();
+    }
 }
