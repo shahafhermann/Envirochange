@@ -10,13 +10,14 @@ public class ButtonBehaviour : MonoBehaviour {
     public float transitionTime = 0.5f;
 
     private AudioSource soundFX;
+    private MusicControl musicControl;
 
     private PlayerInput controls;
-
 
     private void Awake() {
         soundFX = gameObject.GetComponent<AudioSource>();
         controls = new PlayerInput();
+        musicControl = GameObject.Find("SoundManager").GetComponent<MusicControl>();
     }
     private void OnEnable()
     {
@@ -62,6 +63,8 @@ public class ButtonBehaviour : MonoBehaviour {
             soundFX.Stop();
         }
         soundFX.Play();
+        
+        musicControl.transitionTo(1);
         
         yield return new WaitForSeconds(0.2f);
         
