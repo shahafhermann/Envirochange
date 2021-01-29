@@ -5044,7 +5044,7 @@ Transform:
   m_GameObject: {fileID: 72387732}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 8.75, y: 0.28, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.3, z: 1}
+  m_LocalScale: {x: 1, y: 0.3, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -5248,9 +5248,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundColors:
-  - {r: 0.09420612, g: 0.22759037, b: 0.2735849, a: 1}
-  - {r: 0.065147735, g: 0.084346235, b: 0.2264151, a: 1}
-  colorChangeDuration: 4
+  - {r: 0.08664116, g: 0.08902066, b: 0.103773594, a: 1}
+  - {r: 0.14627092, g: 0.15726238, b: 0.1792453, a: 1}
+  colorChangeDuration: 10
 --- !u!1 &203732863
 GameObject:
   m_ObjectHideFlags: 0
