@@ -11753,7 +11753,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1832077612
+--- !u!1 &1864541901
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -11761,9 +11761,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1832077615}
-  - component: {fileID: 1832077614}
-  - component: {fileID: 1832077613}
+  - component: {fileID: 1864541904}
+  - component: {fileID: 1864541903}
+  - component: {fileID: 1864541902}
   m_Layer: 0
   m_Name: bg stars (1)
   m_TagString: Untagged
@@ -11771,14 +11771,14 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!199 &1832077613
+--- !u!199 &1864541902
 ParticleSystemRenderer:
   serializedVersion: 6
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1832077612}
+  m_GameObject: {fileID: 1864541901}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -11837,13 +11837,13 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!198 &1832077614
+--- !u!198 &1864541903
 ParticleSystem:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1832077612}
+  m_GameObject: {fileID: 1864541901}
   serializedVersion: 7
   lengthInSec: 10
   simulationSpeed: 1
@@ -16543,13 +16543,13 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
---- !u!4 &1832077615
+--- !u!4 &1864541904
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1832077612}
+  m_GameObject: {fileID: 1864541901}
   m_LocalRotation: {x: -0, y: -0, z: -0.7093907, w: 0.70481545}
   m_LocalPosition: {x: 0.76, y: -1.2692289, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
