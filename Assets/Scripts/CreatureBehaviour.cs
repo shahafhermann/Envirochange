@@ -41,6 +41,7 @@ public class CreatureBehaviour : MonoBehaviour {
     
     private Transform eyeChild;
     private Animator eye_animator;
+    private ParticleSystem double_jump_particle;
 
     private void Awake() {
         gameManager = FindObjectOfType<GameManager>();
@@ -69,6 +70,8 @@ public class CreatureBehaviour : MonoBehaviour {
         isDashing = false;
         eyeChild = gameObject.transform.GetChild(3);
         eye_animator = eyeChild.GetComponent<Animator>();
+        double_jump_particle = gameObject.transform.GetChild(4).GetComponent<ParticleSystem>();
+        double_jump_particle.Stop();
     }
 
     private void Update()
@@ -105,6 +108,7 @@ public class CreatureBehaviour : MonoBehaviour {
                 float jump_power = 1f;
                 if (last_resort_jump)
                 {
+                    StartCoroutine(apply_double_jump_particle());
                     jump_power = 0.35f;
                     last_resort_jump = false;
                 }
@@ -117,6 +121,13 @@ public class CreatureBehaviour : MonoBehaviour {
             }
         }
 
+    }
+    
+    IEnumerator apply_double_jump_particle()
+    {
+        double_jump_particle.Play();
+        yield return new WaitForSeconds(11f);
+        double_jump_particle.Stop();
     }
 
     private void _jump(float jump_power)
@@ -145,12 +156,16 @@ public class CreatureBehaviour : MonoBehaviour {
         float originalDrag = creature_rigid.drag;
         float originalAngularDrag = creature_rigid.angularDrag;
         float originalGravity = creature_rigid.gravityScale;
-        creature_rigid.drag = 0f;
+        creature_rigid.drag = 0.0001f;
         creature_rigid.angularDrag = 0f;
         creature_rigid.gravityScale = 0f;
         CameraEffects.ShakeOnce(0.3f, 10f);
         gameManager.playSound(0);
-        yield return new WaitForSeconds(dashTime);
+        yield return new WaitForSeconds(dashTime * (0.75f));
+        creature_rigid.velocity = direction * (dashSpeed * .5f);
+        creature_rigid.drag = 0.01f;
+        yield return new WaitForSeconds(dashTime * (0.25f));
+        
         
         dashParticles.Stop();
         trail.SetActive(false);
@@ -218,9 +233,15 @@ public class CreatureBehaviour : MonoBehaviour {
         }
         if (other.gameObject.CompareTag("Platform"))
         {
-            num_of_jumps++;
-            last_resort_jump = true;
+            StartCoroutine(coyote_time());
         }
+    }
+    
+    IEnumerator coyote_time()
+    {
+        yield return new WaitForSeconds(.1f);
+        num_of_jumps++;
+        last_resort_jump = true;
     }
 
     private void magnetizeTo(GameObject other) {
