@@ -45,6 +45,7 @@ public class CreatureBehaviour : MonoBehaviour {
 
     private float curMagnetForce = 100f;
     private bool magnetDown = false;
+    private Vector2 _movement;
 
     private void Awake() {
         gameManager = FindObjectOfType<GameManager>();
@@ -139,7 +140,8 @@ public class CreatureBehaviour : MonoBehaviour {
         Vector2 jumpDir = new Vector2((transform.up.x + Vector2.up.x) / 2, (transform.up.y + Vector2.up.y) / 2);
 
         if (magnetDown) {
-            jumpDir = - jumpDir;
+            jumpDir = new Vector2(controls.Creature.movement.ReadValue<Vector2>().x, 
+                controls.Creature.movement.ReadValue<Vector2>().y);
         }
         creature_rigid.AddForce(jumpDir * (jumpHeight * jump_power), ForceMode2D.Impulse);
     }
