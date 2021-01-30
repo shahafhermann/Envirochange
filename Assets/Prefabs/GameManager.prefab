@@ -150,7 +150,7 @@ MonoBehaviour:
       zRotations: []
       changeType: 0
   nextLevelMusicNumber: 0
-  useSounds: 1
+  useSounds: 0
 --- !u!82 &4471642095728596392
 AudioSource:
   m_ObjectHideFlags: 0
