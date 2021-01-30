@@ -28,9 +28,6 @@ public class GameManager : MonoBehaviour {
     public Level[] levels;
     private int curLevel = 0;
     
-    // 0 = dash, 1 = death, 2 = nextLevel, 3 = respawn, 4 = magneticField, 5 = menuButton
-    // public AudioClip[] sounds;
-    // private AudioSource soundFX;
     private deathEffect death_effect;
 
     private MusicControl musicControl;

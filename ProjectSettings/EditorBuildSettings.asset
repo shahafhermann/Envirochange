@@ -33,7 +33,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Level 8.unity
     guid: 45211c165704e45788abc00135a8b4cf
   - enabled: 1
-    path: Assets/Scenes/Level 9 (magnet tutorial).unity
+    path: Assets/Scenes/magnet 1.unity
     guid: ae57c6aad1e3e4400a09451ae2a91ea1
   - enabled: 1
     path: Assets/Scenes/Level 10.unity

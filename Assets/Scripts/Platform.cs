@@ -23,35 +23,9 @@ public class Platform {
             }
 
             if (curIndex < zRotations.Length) {  // Change rotation
-                platform.transform.Rotate(new Vector3(0,0,1f), zRotations[curIndex]);
+                platform.transform.eulerAngles = new Vector3(0, 0, zRotations[curIndex]);
             }
 
         }
-        
-        // switch (changeType) {
-        //     case GameManager.ChangeType.Movement:
-        //         curIndex = (curIndex + 1) % Mathf.Max(positions.Length, zRotations.Length);
-        //         
-        //         if (curIndex < positions.Length) {
-        //             platform.transform.position = positions[curIndex];
-        //         }
-        //
-        //         if (curIndex < zRotations.Length) {
-        //             platform.transform.Rotate(new Vector3(0,0,1f), zRotations[curIndex]);
-        //         }
-        //
-        //         break;
-        //     
-        //     case GameManager.ChangeType.Vanish:
-        //         platform.SetActive(!platform.activeSelf);
-        //         break;
-        //     
-        //     case GameManager.ChangeType.Magnetic:
-        //         // Enable magnetic collider
-        //         break;
-        //     
-        //     default:  // Static
-        //         break;
-        // }
     }
 }
