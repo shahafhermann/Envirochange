@@ -39,16 +39,16 @@ EditorBuildSettings:
     path: Assets/Scenes/Level 10.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/Level 11 (laser tutorial).unity
+    path: Assets/Scenes/Level 12 (laser tutorial).unity
     guid: 5d89f70b24d884395a07661b3bd80368
   - enabled: 1
-    path: Assets/Scenes/Level 12.unity
+    path: Assets/Scenes/Level 13.unity
     guid: 45211c165704e45788abc00135a8b4cf
   - enabled: 1
-    path: Assets/Scenes/Level 13 (magnet tutorial).unity
+    path: Assets/Scenes/Level 14 (magnet tutorial).unity
     guid: d3a0f3a92c864472eb9103a218051388
   - enabled: 1
-    path: Assets/Scenes/Level 14.unity
+    path: Assets/Scenes/Level 15.unity
     guid: ae57c6aad1e3e4400a09451ae2a91ea1
   - enabled: 1
     path: Assets/Scenes/EndScene.unity
