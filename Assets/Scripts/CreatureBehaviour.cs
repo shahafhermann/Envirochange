@@ -176,7 +176,7 @@ public class CreatureBehaviour : MonoBehaviour {
         creature_rigid.angularDrag = 0f;
         creature_rigid.gravityScale = 0f;
         CameraEffects.ShakeOnce(0.3f, 10f);
-        gameManager.playSound(0);
+        gameManager.playSound(MusicControl.SoundFX.Dash);
         yield return new WaitForSeconds(dashTime * (0.75f));
         creature_rigid.velocity = direction * (dashSpeed * .5f);
         creature_rigid.drag = 0.01f;
@@ -211,7 +211,7 @@ public class CreatureBehaviour : MonoBehaviour {
         creature_rigid.AddForce(direction * (dashSpeed + 45f), ForceMode2D.Impulse);
         
         CameraEffects.ShakeOnce(0.3f, 10f);
-        gameManager.playSound(0);
+        gameManager.playSound(MusicControl.SoundFX.Dash);
         yield return new WaitForSeconds(dashTime * (0.75f));
 
 
@@ -258,7 +258,7 @@ public class CreatureBehaviour : MonoBehaviour {
             
             magnetizeTo(other.gameObject, true);
             
-            gameManager.playSound(4);
+            gameManager.playSound(MusicControl.SoundFX.MagneticField);
         }
     }
     
@@ -273,7 +273,7 @@ public class CreatureBehaviour : MonoBehaviour {
             Physics2D.gravity = new Vector2(0, -9.8f);
             gameObject.transform.rotation = originalRotation;
             
-            gameManager.playSound(4);
+            gameManager.playSound(MusicControl.SoundFX.MagneticField);
         }
         if (other.gameObject.CompareTag("Platform"))
         {
@@ -308,13 +308,13 @@ public class CreatureBehaviour : MonoBehaviour {
 
     IEnumerator respawn()
     {
-        gameManager.playSound(1);
+        gameManager.playSound(MusicControl.SoundFX.Death);
 
         gameManager.getCurrentLevel().getRespawnAnimator().SetTrigger("Respawn");
         gameManager.apply_death_effect();
 
         yield return new WaitForSeconds(1.2f);
-        gameManager.playSound(3);
+        gameManager.playSound(MusicControl.SoundFX.Respawn);
         yield return new WaitForSeconds(0.28f);
 
         trail.SetActive(false);

@@ -46,7 +46,7 @@ public class ButtonBehaviour : MonoBehaviour {
     }
 
     public void playGame() {
-        musicControl.playSoundFX(5);
+        musicControl.playSoundFX(MusicControl.SoundFX.MenuButton);
         StartCoroutine(loadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
