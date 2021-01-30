@@ -42,6 +42,9 @@ public class CreatureBehaviour : MonoBehaviour {
     private Transform eyeChild;
     private Animator eye_animator;
 
+    private float curMagnetForce = 100f;
+    private bool magnetDown = false;
+
     private void Awake() {
         gameManager = FindObjectOfType<GameManager>();
         controls = new PlayerInput();
@@ -123,6 +126,10 @@ public class CreatureBehaviour : MonoBehaviour {
     {
         creature_rigid.velocity = new Vector2(creature_rigid.velocity.x, 0f);
         Vector2 jumpDir = new Vector2((transform.up.x + Vector2.up.x) / 2, (transform.up.y + Vector2.up.y) / 2);
+
+        if (magnetDown) {
+            jumpDir = - jumpDir;
+        }
         creature_rigid.AddForce(jumpDir * (jumpHeight * jump_power), ForceMode2D.Impulse);
     }
 
@@ -195,17 +202,18 @@ public class CreatureBehaviour : MonoBehaviour {
         }
 
         if (other.gameObject.CompareTag("Magnet")) {
-            magnetizeTo(other.gameObject);
+            float zRot = other.gameObject.transform.rotation.eulerAngles.z;
+            magnetDown = zRot > 90f && zRot < 270f;
+            
+            magnetizeTo(other.gameObject, true);
             
             gameManager.playSound(4);
         }
     }
     
-    
-
     private void OnTriggerStay2D(Collider2D other) {
         if (other.gameObject.CompareTag("Magnet")) {
-            magnetizeTo(other.gameObject);
+            magnetizeTo(other.gameObject, false);
         }
     }
 
@@ -221,10 +229,23 @@ public class CreatureBehaviour : MonoBehaviour {
             num_of_jumps++;
             last_resort_jump = true;
         }
+
+        if (other.gameObject.CompareTag("Magnet")) {
+            magnetDown = false;
+        }
     }
 
-    private void magnetizeTo(GameObject other) {
-        Vector2 dir = -(transform.position - other.gameObject.transform.position).normalized * 9.8f;
+    private void magnetizeTo(GameObject other, bool initial) {
+        if (initial) {
+            curMagnetForce = 100f;
+        }
+        else if (curMagnetForce > 85f) {
+            curMagnetForce -= 1f;
+        }
+        else {
+            curMagnetForce = 13f;
+        }
+        Vector2 dir = -(transform.position - other.gameObject.transform.position).normalized * curMagnetForce;
         Physics2D.gravity = dir;
     }
 
