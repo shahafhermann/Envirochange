@@ -224,7 +224,7 @@ public class CreatureBehaviour : MonoBehaviour {
         if (other.gameObject.CompareTag("Laser")) {
             if (!isRespawning) {
                 isRespawning = true;
-                StartCoroutine(respawn());
+                StartCoroutine(respawn(other.gameObject.tag));
             }
         }
     }
@@ -248,7 +248,7 @@ public class CreatureBehaviour : MonoBehaviour {
         if (other.gameObject.CompareTag("Bottom") || other.gameObject.CompareTag("Laser")) {
             if (!isRespawning) {
                 isRespawning = true;
-                StartCoroutine(respawn());
+                StartCoroutine(respawn(other.gameObject.tag));
             }
         }
 
@@ -306,14 +306,16 @@ public class CreatureBehaviour : MonoBehaviour {
         Physics2D.gravity = dir;
     }
 
-    IEnumerator respawn()
+    IEnumerator respawn(String tag)
     {
         gameManager.playSound(MusicControl.SoundFX.Death);
-
+        
         gameManager.getCurrentLevel().getRespawnAnimator().SetTrigger("Respawn");
+        if (tag == "Bottom") {
+            yield return new WaitForSeconds(1.2f);
+        }
         gameManager.apply_death_effect();
-
-        yield return new WaitForSeconds(1.2f);
+        
         gameManager.playSound(MusicControl.SoundFX.Respawn);
         yield return new WaitForSeconds(0.28f);
 
