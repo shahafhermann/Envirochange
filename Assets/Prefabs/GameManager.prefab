@@ -45,7 +45,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startChangeAfterSeconds: 2
   changeRate: 2
-  timeToWaitForDisappear: 0.35
+  platformEndAnimationDuration: 0.35
   levels:
   - platforms:
     - platform: {fileID: 8652029226950858163, guid: 3ae5f5ee5b9cf4561943a7fa486af1fb, type: 3}
@@ -149,4 +149,4 @@ MonoBehaviour:
       zRotations: []
       changeType: 0
   nextLevelMusicNumber: 0
-  useSounds: 0
+  useSounds: 1

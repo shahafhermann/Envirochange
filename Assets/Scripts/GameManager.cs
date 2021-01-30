@@ -10,14 +10,12 @@ public class GameManager : MonoBehaviour {
     // Set behaviour types for the platforms
     public enum ChangeType {
         Static,
-        Movement,
-        Vanish,
-        Magnetic
+        Movement
     }
 
     public float startChangeAfterSeconds = 3f;
     public float changeRate = 3f;
-    public float timeToWaitForDisappear = 0.5f;
+    public float platformEndAnimationDuration = 0.35f;
 
     private float goalAnimationTime = 2.26f;
     private Animator endPlatformAnimator;
@@ -37,7 +35,6 @@ public class GameManager : MonoBehaviour {
 
     private void Awake() {
         transitionAnimator = GameObject.Find("Crossfade").gameObject.GetComponent<Animator>();
-        // gameObject.GetComponent<AudioSource>();
         if (useSounds) musicControl = GameObject.Find("SoundManager").GetComponent<MusicControl>();
     }
 
@@ -62,7 +59,7 @@ public class GameManager : MonoBehaviour {
     IEnumerator move(Platform platform) {
         if (platform.changeType == ChangeType.Movement) {
             platform.platform.GetComponent<Animator>().SetTrigger("StartMove");
-            yield return new WaitForSeconds(timeToWaitForDisappear);
+            yield return new WaitForSeconds(platformEndAnimationDuration);
         }
         
         platform.move();
@@ -84,15 +81,15 @@ public class GameManager : MonoBehaviour {
     /**
      * Delegation method
      */
-    public void playSound(int index) {
-        if (useSounds) musicControl.playSoundFX(index);
+    public void playSound(MusicControl.SoundFX sound) {
+        if (useSounds) musicControl.playSoundFX(sound);
     }
     
     IEnumerator loadLevel(int levelIndex) {
         endPlatformAnimator.SetTrigger("End");
         yield return new WaitForSeconds(1f);
         
-        playSound(2);
+        playSound(MusicControl.SoundFX.CompleteLevel);
         yield return new WaitForSeconds(0.9f);
         if (useSounds) musicControl.transitionTo(nextLevelMusicNumber);
         yield return new WaitForSeconds(goalAnimationTime - 1.5f);

@@ -7,6 +7,15 @@ using UnityEngine.Audio;
 // 0 = dash, 1 = death, 2 = nextLevel, 3 = respawn, 4 = magneticField, 5 = menuButton
 public class MusicControl : MonoBehaviour {
 
+    public enum SoundFX {
+        Dash,
+        Death,
+        CompleteLevel,
+        Respawn,
+        MagneticField,
+        MenuButton
+    }
+
     public AudioMixerSnapshot[] musicSnapshots;
     public AudioClip[] soundFx;
     public AudioSource fxSource;
@@ -30,8 +39,27 @@ public class MusicControl : MonoBehaviour {
         musicSnapshots[snapshotIndex].TransitionTo(transition);
     }
 
-    public void playSoundFX(int soundIndex) {
-        fxSource.clip = soundFx[soundIndex];
+    public void playSoundFX(SoundFX sound) {
+        switch (sound) {
+            case SoundFX.Dash:
+                fxSource.clip = soundFx[0];
+                break;
+            case SoundFX.Death:
+                fxSource.clip = soundFx[1];
+                break;
+            case SoundFX.CompleteLevel:
+                fxSource.clip = soundFx[2];
+                break;
+            case SoundFX.Respawn:
+                fxSource.clip = soundFx[3];
+                break;
+            case SoundFX.MagneticField:
+                fxSource.clip = soundFx[4];
+                break;
+            case SoundFX.MenuButton:
+                fxSource.clip = soundFx[5];
+                break;
+        }
         if (fxSource.isPlaying) {
             fxSource.Stop();
         }
