@@ -45,6 +45,7 @@ public class CreatureBehaviour : MonoBehaviour {
 
     private float curMagnetForce = 100f;
     private bool magnetDown = false;
+    public bool dash_option1 = true;
 
     private void Awake() {
         gameManager = FindObjectOfType<GameManager>();
@@ -120,7 +121,14 @@ public class CreatureBehaviour : MonoBehaviour {
             
             else if (allowDashing && (num_of_jumps < MAX_JUMPS_ROW) && controls.Creature.dash.triggered && !isDashing)
             {
-                StartCoroutine(dashEffect());
+                if (dash_option1)
+                {
+                    StartCoroutine(dashEffect());
+                }
+                else
+                {
+                    StartCoroutine(dashEffect_option2());
+                }
             }
         }
 
@@ -182,6 +190,33 @@ public class CreatureBehaviour : MonoBehaviour {
         creature_rigid.gravityScale = originalGravity;
         isDashing = false;
         
+    }
+    
+    IEnumerator dashEffect_option2()
+    {
+        isDashing = true;
+        num_of_jumps++;  
+        dashParticles.Play();
+        
+        Vector2 direction = Vector3.zero;
+        direction += controls.Creature.movement.ReadValue<Vector2>();
+
+        if (direction == Vector2.zero)
+        {
+            direction += Vector2.up;
+        }
+        direction.Normalize();
+        trail.SetActive(true);
+        creature_rigid.AddForce(direction * (dashSpeed + 45f), ForceMode2D.Impulse);
+        
+        CameraEffects.ShakeOnce(0.3f, 10f);
+        gameManager.playSound(0);
+        yield return new WaitForSeconds(dashTime * (0.75f));
+
+
+        dashParticles.Stop();
+        trail.SetActive(false);
+        isDashing = false;
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
