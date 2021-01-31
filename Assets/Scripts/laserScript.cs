@@ -63,7 +63,7 @@ public class laserScript : MonoBehaviour
                 for (int i = 0; i < laserConnectors.Length; i++)
                 {
                     Collider2D collider = laserConnectors[i];
-                    collider.enabled = true;
+                    collider.tag =  "Laser";
                 }
                 _time = 0f;
             }
@@ -72,7 +72,7 @@ public class laserScript : MonoBehaviour
                 for (int i = 0; i < laserConnectors.Length; i++)
                 {
                     Collider2D collider = laserConnectors[i];
-                    collider.enabled = false;
+                    collider.tag =  "Untagged";
                 }
             }
         }
