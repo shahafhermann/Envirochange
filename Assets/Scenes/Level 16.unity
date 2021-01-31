@@ -5024,6 +5024,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 488947887}
     m_Modifications:
+    - target: {fileID: 663492454171958830, guid: ea73368b0c7184a5d98f7e2e46544463, type: 3}
+      propertyPath: should_loop
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4549055059590738042, guid: ea73368b0c7184a5d98f7e2e46544463, type: 3}
       propertyPath: m_Name
       value: L barrier
@@ -5071,6 +5075,10 @@ PrefabInstance:
     - target: {fileID: 4549055059590738045, guid: ea73368b0c7184a5d98f7e2e46544463, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5924044852127079254, guid: ea73368b0c7184a5d98f7e2e46544463, type: 3}
+      propertyPath: should_loop
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ea73368b0c7184a5d98f7e2e46544463, type: 3}
@@ -10137,7 +10145,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4222289015941080679, guid: b829cf26c55624c74bd3c36646a2079c, type: 3}
       propertyPath: dash_option1
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4222289015941080700, guid: b829cf26c55624c74bd3c36646a2079c, type: 3}
       propertyPath: m_Name
@@ -10169,24 +10177,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!1 &240939149 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6731327746488676654, guid: ea73368b0c7184a5d98f7e2e46544463, type: 3}
-  m_PrefabInstance: {fileID: 2001711381}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &240939154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 240939149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f54890e2abdb14cc1b6b7422253ebd54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  should_loop: 1
 --- !u!4 &298002372 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1721548108272868741, guid: c3f0d386bd0b04d3b8d635a1ce962f3f, type: 3}
@@ -10272,24 +10262,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8652029226950858163, guid: 3ae5f5ee5b9cf4561943a7fa486af1fb, type: 3}
   m_PrefabInstance: {fileID: 386295889}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &405228753 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6731327746488676654, guid: ea73368b0c7184a5d98f7e2e46544463, type: 3}
-  m_PrefabInstance: {fileID: 181180071}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &405228758
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 405228753}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f54890e2abdb14cc1b6b7422253ebd54, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  should_loop: 1
 --- !u!4 &460553109 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4549055059590738045, guid: ea73368b0c7184a5d98f7e2e46544463, type: 3}
@@ -10893,9 +10865,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2445565942572430294, guid: c3f0d386bd0b04d3b8d635a1ce962f3f, type: 3}
+      propertyPath: should_loop
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6059581831379668622, guid: c3f0d386bd0b04d3b8d635a1ce962f3f, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8859487548549166766, guid: c3f0d386bd0b04d3b8d635a1ce962f3f, type: 3}
+      propertyPath: should_loop
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3f0d386bd0b04d3b8d635a1ce962f3f, type: 3}
@@ -16606,9 +16586,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2445565942572430294, guid: c3f0d386bd0b04d3b8d635a1ce962f3f, type: 3}
+      propertyPath: should_loop
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5035201330426102196, guid: c3f0d386bd0b04d3b8d635a1ce962f3f, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8859487548549166766, guid: c3f0d386bd0b04d3b8d635a1ce962f3f, type: 3}
+      propertyPath: should_loop
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3f0d386bd0b04d3b8d635a1ce962f3f, type: 3}

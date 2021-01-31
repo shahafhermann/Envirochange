@@ -28,7 +28,6 @@ public class laserParticle : MonoBehaviour
             _time += Time.deltaTime;
             if (_time >= 2 * particles.duration)
             {
-                Debug.Log(_time);
                 particles.Stop();
                 particles.Play();
                 _time = 0f;

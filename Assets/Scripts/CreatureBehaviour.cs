@@ -214,11 +214,11 @@ public class CreatureBehaviour : MonoBehaviour {
         float originalGravity = creature_rigid.gravityScale;
         creature_rigid.gravityScale = Single.Epsilon;
         creature_rigid.velocity = Vector2.zero;
-        creature_rigid.AddForce(direction * (dashSpeed + 30f), ForceMode2D.Impulse);
+        creature_rigid.AddForce(direction * (dashSpeed + 20f), ForceMode2D.Impulse);
         
         CameraEffects.ShakeOnce(0.3f, 10f);
         gameManager.playSound(MusicControl.SoundFX.Dash);
-        yield return new WaitForSeconds(dashTime * (0.75f));
+        yield return new WaitForSeconds(dashTime);
         creature_rigid.gravityScale = originalGravity;
         
 
