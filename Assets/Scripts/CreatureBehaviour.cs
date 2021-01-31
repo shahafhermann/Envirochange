@@ -319,11 +319,11 @@ public class CreatureBehaviour : MonoBehaviour {
         gameManager.playSound(MusicControl.SoundFX.Death);
         
         gameManager.getCurrentLevel().getRespawnAnimator().SetTrigger("Respawn");
+        gameManager.apply_death_effect();
         if (tag == "Bottom") {
             yield return new WaitForSeconds(1.2f);
         }
-        gameManager.apply_death_effect();
-        
+
         gameManager.playSound(MusicControl.SoundFX.Respawn);
         yield return new WaitForSeconds(0.28f);
 
