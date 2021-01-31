@@ -40,6 +40,7 @@ public class CreatureBehaviour : MonoBehaviour {
     public GameObject trail;
     
     private Transform eyeChild;
+    private SpriteRenderer eyeSprite;
     private Animator eye_animator;
     private ParticleSystem double_jump_particle;
 
@@ -74,6 +75,7 @@ public class CreatureBehaviour : MonoBehaviour {
         isDashing = false;
         eyeChild = gameObject.transform.GetChild(3);
         eye_animator = eyeChild.GetComponent<Animator>();
+        eyeSprite = eyeChild.GetComponent<SpriteRenderer>();
         double_jump_particle = gameObject.transform.GetChild(4).GetComponent<ParticleSystem>();
         double_jump_particle.Stop();
     }
@@ -336,11 +338,13 @@ public class CreatureBehaviour : MonoBehaviour {
             yield return new WaitForSeconds(1.2f);
         }
 
+        eyeSprite.enabled = false;
         gameManager.playSound(MusicControl.SoundFX.Respawn);
         yield return new WaitForSeconds(0.28f);
 
         trail.SetActive(false);
         num_of_jumps = 0;
+        eyeSprite.enabled = true;
         creature_rigid.transform.position = gameManager.getCurrentLevel().getRespawnPosition() 
                                             + new Vector3(0, 0.25f, 0);
         
