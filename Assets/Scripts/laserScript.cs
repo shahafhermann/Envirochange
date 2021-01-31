@@ -37,7 +37,6 @@ public class laserScript : MonoBehaviour
                 particles.loop = enabled;
             }
             particles.Play();
-            Debug.Log(particles.duration);
         }
         
         laserAnimator.speed = 4f / (duration * 2);

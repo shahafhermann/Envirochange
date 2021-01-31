@@ -4849,6 +4849,7 @@ GameObject:
   - component: {fileID: 4549055059590738045}
   - component: {fileID: 4549055059590738044}
   - component: {fileID: 4549055059590738047}
+  - component: {fileID: 3551863698794491299}
   m_Layer: 0
   m_Name: L barrier
   m_TagString: Untagged
@@ -4947,6 +4948,21 @@ PointEffector2D:
   m_ForceMode: 0
   m_Drag: 30
   m_AngularDrag: 50
+--- !u!114 &3551863698794491299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4549055059590738042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e288002fc35943799b69a8d34222f88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay_time: 0
+  duration: 2
+  should_loop: 0
 --- !u!1 &6731327746488676654
 GameObject:
   m_ObjectHideFlags: 0
