@@ -91,13 +91,21 @@ public class CreatureBehaviour : MonoBehaviour {
 
             if (x_movementInput < 0f && !isDashing)
             {
-                creature_rigid.velocity = new Vector2(0f, creature_rigid.velocity.y);
+                if (creature_rigid.velocity.x > 0)
+                {
+                    creature_rigid.velocity = new Vector2(0f, creature_rigid.velocity.y);
+                }
+
                 eye_animator.enabled = false;
                 creature_rigid.transform.position += -transform.right * (turnSpeed * Time.deltaTime);
                 eyeChild.transform.Rotate(0,0,turnSpeed );
             }
             if (x_movementInput > 0f && !isDashing)
             {
+                if (creature_rigid.velocity.x < 0)
+                {
+                    creature_rigid.velocity = new Vector2(0f, creature_rigid.velocity.y);
+                }
                 creature_rigid.velocity = new Vector2(0f, creature_rigid.velocity.y);
                 eye_animator.enabled = false;
                 creature_rigid.transform.position += transform.right * (turnSpeed * Time.deltaTime);
@@ -212,9 +220,11 @@ public class CreatureBehaviour : MonoBehaviour {
         trail.SetActive(true);
 
         float originalGravity = creature_rigid.gravityScale;
-        if (direction.x != 0 && direction.y == 0)
+        float originalDrag = creature_rigid.drag;
+        if (direction.x != 0)
         {
             creature_rigid.gravityScale = Single.Epsilon;
+            creature_rigid.drag *= 3f;
         }
         creature_rigid.velocity = Vector2.zero;
         creature_rigid.AddForce(direction * (dashSpeed + 40f), ForceMode2D.Impulse);
@@ -223,6 +233,7 @@ public class CreatureBehaviour : MonoBehaviour {
         gameManager.playSound(MusicControl.SoundFX.Dash);
         yield return new WaitForSeconds(dashTime);
         creature_rigid.gravityScale = originalGravity;
+        creature_rigid.drag = originalDrag;
 
         dashParticles.Stop();
         trail.SetActive(false);
