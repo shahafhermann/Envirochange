@@ -7526,11 +7526,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3173754911764399569, guid: 43ea76872f44447d99403e8fa01d38d1, type: 3}
       propertyPath: levels.Array.data[0].platforms.Array.data[2].zRotations.Array.data[0]
-      value: 125
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 3173754911764399569, guid: 43ea76872f44447d99403e8fa01d38d1, type: 3}
       propertyPath: levels.Array.data[0].platforms.Array.data[2].zRotations.Array.data[1]
-      value: 225
+      value: 315
       objectReference: {fileID: 0}
     - target: {fileID: 3173754911764399569, guid: 43ea76872f44447d99403e8fa01d38d1, type: 3}
       propertyPath: levels.Array.data[0].platforms.Array.data[3].zRotations.Array.data[0]
@@ -7932,6 +7932,10 @@ PrefabInstance:
     - target: {fileID: 2275876974365010602, guid: 99fc2b1c027394426ba711b79b49f516, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 6200800329412641119, guid: 99fc2b1c027394426ba711b79b49f516, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6200800329412641119, guid: 99fc2b1c027394426ba711b79b49f516, type: 3}
       propertyPath: m_Controller

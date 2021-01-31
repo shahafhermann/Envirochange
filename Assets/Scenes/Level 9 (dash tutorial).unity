@@ -17512,7 +17512,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4222289015941080679, guid: b829cf26c55624c74bd3c36646a2079c, type: 3}
       propertyPath: dash_option1
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4222289015941080700, guid: b829cf26c55624c74bd3c36646a2079c, type: 3}
       propertyPath: m_Name
