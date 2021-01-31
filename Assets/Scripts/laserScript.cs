@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class laserScript : MonoBehaviour
 {
+    public float delay_time = 0f;
     public float duration;
     public bool should_loop = false;
     
@@ -15,6 +16,8 @@ public class laserScript : MonoBehaviour
     private Collider2D[] laserConnectors;
 
     private float _time;
+
+    private bool finished_delay = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,11 +41,7 @@ public class laserScript : MonoBehaviour
         }
         
         laserAnimator.speed = 4f / (duration * 2);
-
-        if (should_loop)
-        {
-            laserAnimator.enabled = false;
-        }
+        laserAnimator.enabled = false;
 
     }
 
@@ -52,27 +51,41 @@ public class laserScript : MonoBehaviour
         if (!should_loop)
         {
             _time += Time.deltaTime;
-            if (_time >= 2 * duration)
+            if (finished_delay)
             {
-                for (int i = 0; i < laserParticles.Length; i++)
+                if (_time >= 2 * duration)
                 {
-                    ParticleSystem particles = laserParticles[i];
-                    particles.Stop();
-                    particles.Play();
+                    for (int i = 0; i < laserParticles.Length; i++)
+                    {
+                        ParticleSystem particles = laserParticles[i];
+                        particles.Stop();
+                        particles.Play();
+                    }
+
+                    for (int i = 0; i < laserConnectors.Length; i++)
+                    {
+                        Collider2D collider = laserConnectors[i];
+                        collider.tag = "Laser";
+                    }
+
+                    _time = 0f;
                 }
-                for (int i = 0; i < laserConnectors.Length; i++)
+                else if (_time >= duration && _time < 2 * duration)
                 {
-                    Collider2D collider = laserConnectors[i];
-                    collider.tag =  "Laser";
+                    for (int i = 0; i < laserConnectors.Length; i++)
+                    {
+                        Collider2D collider = laserConnectors[i];
+                        collider.tag = "Untagged";
+                    }
                 }
-                _time = 0f;
             }
-            else if (_time >= duration && _time < 2 * duration)
+            else
             {
-                for (int i = 0; i < laserConnectors.Length; i++)
+                if (_time >= delay_time)
                 {
-                    Collider2D collider = laserConnectors[i];
-                    collider.tag =  "Untagged";
+                    finished_delay = true;
+                    laserAnimator.enabled = true;
+                    _time = 0f;
                 }
             }
         }
