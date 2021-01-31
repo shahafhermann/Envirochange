@@ -91,12 +91,14 @@ public class CreatureBehaviour : MonoBehaviour {
 
             if (x_movementInput < 0f && !isDashing)
             {
+                creature_rigid.velocity = new Vector2(0f, creature_rigid.velocity.y);
                 eye_animator.enabled = false;
                 creature_rigid.transform.position += -transform.right * (turnSpeed * Time.deltaTime);
                 eyeChild.transform.Rotate(0,0,turnSpeed );
             }
             if (x_movementInput > 0f && !isDashing)
             {
+                creature_rigid.velocity = new Vector2(0f, creature_rigid.velocity.y);
                 eye_animator.enabled = false;
                 creature_rigid.transform.position += transform.right * (turnSpeed * Time.deltaTime);
                 eyeChild.transform.Rotate(0,0,-turnSpeed );
@@ -208,11 +210,16 @@ public class CreatureBehaviour : MonoBehaviour {
         }
         direction.Normalize();
         trail.SetActive(true);
-        creature_rigid.AddForce(direction * (dashSpeed + 45f), ForceMode2D.Impulse);
+
+        float originalGravity = creature_rigid.gravityScale;
+        creature_rigid.gravityScale = Single.Epsilon;
+        creature_rigid.AddForce(direction * (dashSpeed + 30f), ForceMode2D.Impulse);
         
         CameraEffects.ShakeOnce(0.3f, 10f);
         gameManager.playSound(MusicControl.SoundFX.Dash);
         yield return new WaitForSeconds(dashTime * (0.75f));
+        creature_rigid.gravityScale = originalGravity;
+        
 
 
         dashParticles.Stop();
