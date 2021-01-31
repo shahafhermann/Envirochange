@@ -213,6 +213,7 @@ public class CreatureBehaviour : MonoBehaviour {
 
         float originalGravity = creature_rigid.gravityScale;
         creature_rigid.gravityScale = Single.Epsilon;
+        creature_rigid.velocity = Vector2.zero;
         creature_rigid.AddForce(direction * (dashSpeed + 30f), ForceMode2D.Impulse);
         
         CameraEffects.ShakeOnce(0.3f, 10f);
