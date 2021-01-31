@@ -5253,6 +5253,10 @@ PrefabInstance:
       propertyPath: duration
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3716781086361030475, guid: c3f0d386bd0b04d3b8d635a1ce962f3f, type: 3}
+      propertyPath: should_loop
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6059581831379668622, guid: c3f0d386bd0b04d3b8d635a1ce962f3f, type: 3}
       propertyPath: m_IsActive
       value: 0

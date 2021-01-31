@@ -39,6 +39,11 @@ public class laserScript : MonoBehaviour
         
         laserAnimator.speed = 4f / (duration * 2);
 
+        if (should_loop)
+        {
+            laserAnimator.enabled = false;
+        }
+
     }
 
     // Update is called once per frame
