@@ -525,7 +525,7 @@ PrefabInstance:
     - target: {fileID: 6200800329412641119, guid: 42b6825a197b14fc18a489913184ad83, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 290604d4e0db74fbdab33723a3c958e4, type: 2}
+      objectReference: {fileID: 9100000, guid: cacc7dda8d05847fcae127f3d267f4b5, type: 2}
     - target: {fileID: 9004265238410115855, guid: 42b6825a197b14fc18a489913184ad83, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -593,6 +593,10 @@ PrefabInstance:
     - target: {fileID: 3173754911764399568, guid: 43ea76872f44447d99403e8fa01d38d1, type: 3}
       propertyPath: m_Name
       value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 3173754911764399569, guid: 43ea76872f44447d99403e8fa01d38d1, type: 3}
+      propertyPath: useSounds
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3173754911764399569, guid: 43ea76872f44447d99403e8fa01d38d1, type: 3}
       propertyPath: levels.Array.size
