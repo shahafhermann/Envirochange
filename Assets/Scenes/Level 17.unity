@@ -5096,6 +5096,7 @@ GameObject:
   m_Component:
   - component: {fileID: 201433358}
   - component: {fileID: 201433357}
+  - component: {fileID: 201433359}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -5144,7 +5145,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: db750325989564987a34393247d883b4, type: 3}
-  m_Color: {r: 0.09019608, g: 0.14476779, b: 0.21960784, a: 1}
+  m_Color: {r: 0.09019608, g: 0.14476779, b: 0.21960784, a: 0.92941177}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5169,6 +5170,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &201433359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 201433356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f85d61bcede849699dca3cc17f1fa7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgroundColors:
+  - {r: 0.0754717, g: 0.3018868, b: 0.25601915, a: 0}
+  - {r: 0.076762185, g: 0.21698111, b: 0.13864246, a: 0}
+  colorChangeDuration: 12
 --- !u!4 &207705928 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1721548108272868741, guid: c3f0d386bd0b04d3b8d635a1ce962f3f, type: 3}
