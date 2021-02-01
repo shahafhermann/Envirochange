@@ -13,7 +13,7 @@ public class laserScript : MonoBehaviour
 
     private ParticleSystem[] laserParticles;
 
-    private Collider2D[] laserConnectors;
+    private CircleCollider2D[] laserConnectors;
 
     private float _time;
 
@@ -23,7 +23,7 @@ public class laserScript : MonoBehaviour
     {
         _time = 0f;
         laserAnimator = gameObject.transform.GetChild(1).GetComponent<Animator>();
-        laserConnectors = GetComponentsInChildren<Collider2D>();
+        laserConnectors = GetComponentsInChildren<CircleCollider2D>();
         laserParticles = GetComponentsInChildren<ParticleSystem>();
 
         for (int i = 0; i < laserParticles.Length; i++)
@@ -63,7 +63,7 @@ public class laserScript : MonoBehaviour
 
                     for (int i = 0; i < laserConnectors.Length; i++)
                     {
-                        Collider2D collider = laserConnectors[i];
+                        CircleCollider2D collider = laserConnectors[i];
                         collider.tag = "Laser";
                     }
 
@@ -73,7 +73,7 @@ public class laserScript : MonoBehaviour
                 {
                     for (int i = 0; i < laserConnectors.Length; i++)
                     {
-                        Collider2D collider = laserConnectors[i];
+                        CircleCollider2D collider = laserConnectors[i];
                         collider.tag = "Untagged";
                     }
                 }
