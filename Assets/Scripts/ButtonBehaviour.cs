@@ -13,17 +13,12 @@ public class ButtonBehaviour : MonoBehaviour {
     private MusicControl musicControl;
 
     private PlayerInput controls;
-
-    private GameObject joystic_instructions;
-    private GameObject keyboard_instructions;
+    
 
     private void Awake() {
         // soundFX = gameObject.GetComponent<AudioSource>();
         controls = new PlayerInput();
         musicControl = GameObject.Find("SoundManager").GetComponent<MusicControl>();
-        Debug.Log(gameObject.transform.GetChild(2).name);
-        joystic_instructions = gameObject.transform.GetChild(1).GetChild(0).gameObject;
-        keyboard_instructions = gameObject.transform.GetChild(1).GetChild(1).gameObject;
     }
     private void OnEnable()
     {
@@ -49,17 +44,7 @@ public class ButtonBehaviour : MonoBehaviour {
         {
             exitGame();
         }
-
-        if (Gamepad.current != null)
-        {
-            keyboard_instructions.SetActive(false);
-            joystic_instructions.SetActive(true);
-        }
-        else
-        {
-            keyboard_instructions.SetActive(true);
-            joystic_instructions.SetActive(false);
-        }
+        
     }
 
     public void playGame() {
