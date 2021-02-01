@@ -1001,8 +1001,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgroundColors:
-  - {r: 0.09420612, g: 0.22759037, b: 0.2735849, a: 1}
-  - {r: 0.121484526, g: 0.17719328, b: 0.2830189, a: 1}
+  - {r: 0.27450982, g: 0.09411765, b: 0.22096802, a: 1}
+  - {r: 0.32941177, g: 0.050980397, b: 0.19167604, a: 1}
   colorChangeDuration: 4
 --- !u!212 &805817702
 SpriteRenderer:
