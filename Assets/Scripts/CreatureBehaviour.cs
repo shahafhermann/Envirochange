@@ -363,6 +363,7 @@ public class CreatureBehaviour : MonoBehaviour {
 
         gameManager.getCurrentLevel().getRespawnAnimator().SetTrigger("Respawn");
         gameManager.apply_death_effect();
+        creature_rigid.velocity = Vector2.zero;
         if (tag == "Bottom") {
             yield return new WaitForSeconds(1.2f);
         }
