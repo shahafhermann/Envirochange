@@ -291,6 +291,7 @@ public class CreatureBehaviour : MonoBehaviour {
         if (other.gameObject.CompareTag("Magnet")) {
             float zRot = other.gameObject.transform.rotation.eulerAngles.z;
             magnetDown = zRot > 90f && zRot < 270f;
+            creature_rigid.velocity *= 0.2f;
             
             magnetizeTo(other.gameObject, true);
             

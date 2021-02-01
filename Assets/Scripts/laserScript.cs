@@ -34,7 +34,7 @@ public class laserScript : MonoBehaviour
             main.duration = duration;
             if (should_loop)
             {
-                particles.loop = enabled;
+                main.loop = enabled;
             }
             particles.Play();
         }
