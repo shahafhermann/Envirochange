@@ -22,8 +22,8 @@ public class ButtonBehaviour : MonoBehaviour {
         controls = new PlayerInput();
         musicControl = GameObject.Find("SoundManager").GetComponent<MusicControl>();
         Debug.Log(gameObject.transform.GetChild(2).name);
-        joystic_instructions = gameObject.transform.GetChild(2).GetChild(0).gameObject;
-        keyboard_instructions = gameObject.transform.GetChild(2).GetChild(1).gameObject;
+        joystic_instructions = gameObject.transform.GetChild(1).GetChild(0).gameObject;
+        keyboard_instructions = gameObject.transform.GetChild(1).GetChild(1).gameObject;
     }
     private void OnEnable()
     {
