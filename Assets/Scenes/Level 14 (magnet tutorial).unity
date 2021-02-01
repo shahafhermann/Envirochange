@@ -6730,6 +6730,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 6200800329412641119, guid: 99fc2b1c027394426ba711b79b49f516, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6200800329412641119, guid: 99fc2b1c027394426ba711b79b49f516, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e94a7249e67d7403b93c6b3dddd5c0dd, type: 2}
     - target: {fileID: 7905271083424848065, guid: 99fc2b1c027394426ba711b79b49f516, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -6750,6 +6758,10 @@ PrefabInstance:
     - target: {fileID: 3173754911764399568, guid: 43ea76872f44447d99403e8fa01d38d1, type: 3}
       propertyPath: m_Name
       value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 3173754911764399569, guid: 43ea76872f44447d99403e8fa01d38d1, type: 3}
+      propertyPath: useSounds
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3173754911764399569, guid: 43ea76872f44447d99403e8fa01d38d1, type: 3}
       propertyPath: levels.Array.size

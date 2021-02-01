@@ -921,7 +921,7 @@ PrefabInstance:
     - target: {fileID: 6200800329412641119, guid: 99fc2b1c027394426ba711b79b49f516, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 17315c33411aa4c84bdb3f584af8f164, type: 2}
+      objectReference: {fileID: 9100000, guid: e94a7249e67d7403b93c6b3dddd5c0dd, type: 2}
     - target: {fileID: 7905271083424848065, guid: 99fc2b1c027394426ba711b79b49f516, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1897,9 +1897,13 @@ PrefabInstance:
       value: 270
       objectReference: {fileID: 0}
     - target: {fileID: 6200800329412641119, guid: 99fc2b1c027394426ba711b79b49f516, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6200800329412641119, guid: 99fc2b1c027394426ba711b79b49f516, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 17315c33411aa4c84bdb3f584af8f164, type: 2}
+      objectReference: {fileID: 9100000, guid: e94a7249e67d7403b93c6b3dddd5c0dd, type: 2}
     - target: {fileID: 7905271083424848065, guid: 99fc2b1c027394426ba711b79b49f516, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -7539,7 +7543,7 @@ PrefabInstance:
     - target: {fileID: 6200800329412641119, guid: 99fc2b1c027394426ba711b79b49f516, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 17315c33411aa4c84bdb3f584af8f164, type: 2}
+      objectReference: {fileID: 9100000, guid: e94a7249e67d7403b93c6b3dddd5c0dd, type: 2}
     - target: {fileID: 7905271083424848065, guid: 99fc2b1c027394426ba711b79b49f516, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -8161,7 +8165,7 @@ PrefabInstance:
     - target: {fileID: 6200800329412641119, guid: 99fc2b1c027394426ba711b79b49f516, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 17315c33411aa4c84bdb3f584af8f164, type: 2}
+      objectReference: {fileID: 9100000, guid: e94a7249e67d7403b93c6b3dddd5c0dd, type: 2}
     - target: {fileID: 7905271083424848065, guid: 99fc2b1c027394426ba711b79b49f516, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
