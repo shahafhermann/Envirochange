@@ -86,7 +86,8 @@ public class GameManager : MonoBehaviour {
     }
     
     IEnumerator loadLevel(int levelIndex) {
-        if (SaveSystem.LoadLevel().level < levelIndex) {
+        GameData data = SaveSystem.LoadLevel();
+        if (data != null && data.level < levelIndex) {
             SaveSystem.SaveLevel(levelIndex, nextLevelMusicNumber);
         }
         
