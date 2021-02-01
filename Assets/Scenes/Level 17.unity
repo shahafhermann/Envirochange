@@ -10264,11 +10264,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4222289015941080679, guid: b829cf26c55624c74bd3c36646a2079c, type: 3}
       propertyPath: dashSpeed
-      value: 8
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4222289015941080679, guid: b829cf26c55624c74bd3c36646a2079c, type: 3}
       propertyPath: jumpHeight
-      value: 42
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 4222289015941080679, guid: b829cf26c55624c74bd3c36646a2079c, type: 3}
       propertyPath: gameManager
