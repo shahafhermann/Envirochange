@@ -18,7 +18,7 @@ public class CreatureBehaviour : MonoBehaviour {
     public float groundSpeed = 5f;
     public float midAir = 5f;
     public int MAX_JUMPS_ROW = 2;
-    private int num_of_jumps;
+    public int num_of_jumps;
     private float turnSpeed;
 
     private bool isRespawning = false; 
