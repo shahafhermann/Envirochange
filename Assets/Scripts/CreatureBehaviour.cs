@@ -18,7 +18,7 @@ public class CreatureBehaviour : MonoBehaviour {
     public float groundSpeed = 5f;
     public float midAir = 5f;
     public int MAX_JUMPS_ROW = 2;
-    public int num_of_jumps;
+    private int num_of_jumps;
     private float turnSpeed;
 
     private bool isRespawning = false; 
@@ -46,7 +46,7 @@ public class CreatureBehaviour : MonoBehaviour {
 
     private float curMagnetForce = 100f;
     private bool magnetDown = false;
-    public bool dash_option1 = true;
+    private bool jumped = false;
 
     private void Awake() {
         gameManager = FindObjectOfType<GameManager>();
@@ -129,19 +129,16 @@ public class CreatureBehaviour : MonoBehaviour {
                     last_resort_jump = false;
                 }
                 _jump(jump_power);
+                jumped = true;
             }
             
             else if (allowDashing && (num_of_jumps < MAX_JUMPS_ROW) && controls.Creature.dash.triggered && !isDashing)
             {
-                if (dash_option1)
-                {
-                    StartCoroutine(dashEffect());
-                }
-                else
-                {
-                    StartCoroutine(dashEffect_option2());
-                }
+                jumped = true;
+                StartCoroutine(dashEffect());
             }
+            
+            
         }
 
     }
@@ -213,6 +210,12 @@ public class CreatureBehaviour : MonoBehaviour {
         creature_rigid.gravityScale = originalGravity;
         isDashing = false;
         
+        // if the creature didn't leave the platform than restore the jump
+        if (direction.y < 0 && num_of_jumps == 1)
+        {
+            num_of_jumps--;
+        }
+        
     }
     
     IEnumerator dashEffect_option2()
@@ -266,6 +269,7 @@ public class CreatureBehaviour : MonoBehaviour {
         {
             num_of_jumps = 0;
             last_resort_jump = false;
+            jumped = false;
         }
         
         if (other.gameObject.CompareTag("Goal")) {
@@ -309,7 +313,9 @@ public class CreatureBehaviour : MonoBehaviour {
         }
         if (other.gameObject.CompareTag("Platform"))
         {
-            StartCoroutine(coyote_time());
+            if (jumped){StartCoroutine(coyote_time(0f));}
+            else {StartCoroutine(coyote_time(.1f));}
+            
         }
 
         if (other.gameObject.CompareTag("Magnet")) {
@@ -317,9 +323,9 @@ public class CreatureBehaviour : MonoBehaviour {
         }
     }
     
-    IEnumerator coyote_time()
+    IEnumerator coyote_time(float duration)
     {
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(duration);
         num_of_jumps++;
         last_resort_jump = true;
     }
