@@ -250,7 +250,7 @@ MonoBehaviour:
   dashTime: 0.3
   allowDashing: 0
   trail: {fileID: 5385170444456538668}
-  dash_option1: 0
+  dash_option1: 1
 --- !u!96 &4222289015941080677
 TrailRenderer:
   serializedVersion: 2

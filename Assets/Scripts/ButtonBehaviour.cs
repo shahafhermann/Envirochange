@@ -64,11 +64,17 @@ public class ButtonBehaviour : MonoBehaviour {
 
     public void playGame() {
         musicControl.playSoundFX(MusicControl.SoundFX.MenuButton);
-        StartCoroutine(loadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+        StartCoroutine(loadLevel(SceneManager.GetActiveScene().buildIndex + 1, 1));
+    }
+
+    public void continueGame() {
+        GameData data = SaveSystem.LoadLevel();
+        musicControl.playSoundFX(MusicControl.SoundFX.MenuButton);
+        StartCoroutine(loadLevel(data.level, data.snapshot));
     }
 
     public void restartGame() {
-        StartCoroutine(loadLevel(0));
+        StartCoroutine(loadLevel(0, 0));
     }
 
     public void exitGame()
@@ -76,8 +82,8 @@ public class ButtonBehaviour : MonoBehaviour {
         Application.Quit();
     }
     
-    IEnumerator loadLevel(int levelIndex) {
-        musicControl.transitionTo(1);
+    IEnumerator loadLevel(int levelIndex, int snapshot) {
+        musicControl.transitionTo(snapshot);
         
         yield return new WaitForSeconds(0.2f);
         
