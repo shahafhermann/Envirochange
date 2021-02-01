@@ -16,6 +16,8 @@ public class MusicControl : MonoBehaviour {
         MenuButton
     }
 
+    public static int currentSnapshot = 0;
+
     public AudioMixerSnapshot[] musicSnapshots;
     public AudioClip[] soundFx;
     public AudioSource fxSource;
@@ -37,6 +39,7 @@ public class MusicControl : MonoBehaviour {
 
     public void transitionTo(int snapshotIndex) {
         musicSnapshots[snapshotIndex].TransitionTo(transition);
+        currentSnapshot = snapshotIndex;
     }
 
     public void playSoundFX(SoundFX sound) {

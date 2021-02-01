@@ -79,13 +79,17 @@ public class GameManager : MonoBehaviour {
     }
 
     /**
-     * Delegation method
+     * Delegation methods
      */
     public void playSound(MusicControl.SoundFX sound) {
         if (useSounds) musicControl.playSoundFX(sound);
     }
     
     IEnumerator loadLevel(int levelIndex) {
+        if (SaveSystem.LoadLevel().level < levelIndex) {
+            SaveSystem.SaveLevel(levelIndex, nextLevelMusicNumber);
+        }
+        
         endPlatformAnimator.SetTrigger("End");
         yield return new WaitForSeconds(1f);
         
