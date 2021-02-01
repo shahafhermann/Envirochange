@@ -65,6 +65,10 @@ public class CreatureBehaviour : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
+        if (Gamepad.current != null)
+        {
+            Gamepad.current.SetMotorSpeeds(0f, 0f);
+        }
         originalRotation = gameObject.transform.rotation;
         
         creature_rigid = GetComponent<Rigidbody2D>();
@@ -274,6 +278,10 @@ public class CreatureBehaviour : MonoBehaviour {
         
         if (other.gameObject.CompareTag("Goal")) {
             if (!isRespawning) {
+                if (Gamepad.current != null)
+                {
+                    Gamepad.current.SetMotorSpeeds(0.1f, 0.1f);
+                }
                 allowMovement = false;
                 eye_animator.enabled = true;
                 eye_animator.SetBool("nextLevel", true);
