@@ -171,6 +171,11 @@ public class CreatureBehaviour : MonoBehaviour {
         num_of_jumps++;  
         dashParticles.Play();
         
+        if (Gamepad.current != null)
+        {
+            Gamepad.current.SetMotorSpeeds(.5f, .5f);
+        }
+        
         Vector2 direction = Vector3.zero;
         direction += controls.Creature.movement.ReadValue<Vector2>();
 
@@ -193,6 +198,11 @@ public class CreatureBehaviour : MonoBehaviour {
         creature_rigid.velocity = direction * (dashSpeed * .5f);
         creature_rigid.drag = 0.01f;
         yield return new WaitForSeconds(dashTime * (0.25f));
+        
+        if (Gamepad.current != null)
+        {
+            Gamepad.current.SetMotorSpeeds(0f, 0f);
+        }
         
         
         dashParticles.Stop();
@@ -331,7 +341,11 @@ public class CreatureBehaviour : MonoBehaviour {
     IEnumerator respawn(String tag)
     {
         gameManager.playSound(MusicControl.SoundFX.Death);
-        
+        if (Gamepad.current != null)
+        {
+            Gamepad.current.SetMotorSpeeds(1.0f, 1.0f);
+        }
+
         gameManager.getCurrentLevel().getRespawnAnimator().SetTrigger("Respawn");
         gameManager.apply_death_effect();
         if (tag == "Bottom") {
@@ -347,6 +361,11 @@ public class CreatureBehaviour : MonoBehaviour {
         eyeSprite.enabled = true;
         creature_rigid.transform.position = gameManager.getCurrentLevel().getRespawnPosition() 
                                             + new Vector3(0, 0.25f, 0);
+        
+        if (Gamepad.current != null)
+        {
+            Gamepad.current.SetMotorSpeeds(0f, 0f);
+        }
         
         
         trail.SetActive(true);
