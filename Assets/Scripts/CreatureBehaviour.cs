@@ -40,12 +40,13 @@ public class CreatureBehaviour : MonoBehaviour {
     public GameObject trail;
     
     private Transform eyeChild;
+    private SpriteRenderer eyeSprite;
     private Animator eye_animator;
     private ParticleSystem double_jump_particle;
 
     private float curMagnetForce = 100f;
     private bool magnetDown = false;
-    public bool dash_option1 = true;
+    private bool jumped = false;
 
     private void Awake() {
         gameManager = FindObjectOfType<GameManager>();
@@ -64,6 +65,10 @@ public class CreatureBehaviour : MonoBehaviour {
 
     // Start is called before the first frame update
     void Start() {
+        if (Gamepad.current != null)
+        {
+            Gamepad.current.SetMotorSpeeds(0f, 0f);
+        }
         originalRotation = gameObject.transform.rotation;
         
         creature_rigid = GetComponent<Rigidbody2D>();
@@ -74,6 +79,7 @@ public class CreatureBehaviour : MonoBehaviour {
         isDashing = false;
         eyeChild = gameObject.transform.GetChild(3);
         eye_animator = eyeChild.GetComponent<Animator>();
+        eyeSprite = eyeChild.GetComponent<SpriteRenderer>();
         double_jump_particle = gameObject.transform.GetChild(4).GetComponent<ParticleSystem>();
         double_jump_particle.Stop();
     }
@@ -127,19 +133,16 @@ public class CreatureBehaviour : MonoBehaviour {
                     last_resort_jump = false;
                 }
                 _jump(jump_power);
+                jumped = true;
             }
             
             else if (allowDashing && (num_of_jumps < MAX_JUMPS_ROW) && controls.Creature.dash.triggered && !isDashing)
             {
-                if (dash_option1)
-                {
-                    StartCoroutine(dashEffect());
-                }
-                else
-                {
-                    StartCoroutine(dashEffect_option2());
-                }
+                jumped = true;
+                StartCoroutine(dashEffect());
             }
+            
+            
         }
 
     }
@@ -169,6 +172,11 @@ public class CreatureBehaviour : MonoBehaviour {
         num_of_jumps++;  
         dashParticles.Play();
         
+        if (Gamepad.current != null)
+        {
+            Gamepad.current.SetMotorSpeeds(.5f, .5f);
+        }
+        
         Vector2 direction = Vector3.zero;
         direction += controls.Creature.movement.ReadValue<Vector2>();
 
@@ -192,6 +200,11 @@ public class CreatureBehaviour : MonoBehaviour {
         creature_rigid.drag = 0.01f;
         yield return new WaitForSeconds(dashTime * (0.25f));
         
+        if (Gamepad.current != null)
+        {
+            Gamepad.current.SetMotorSpeeds(0f, 0f);
+        }
+        
         
         dashParticles.Stop();
         trail.SetActive(false);
@@ -200,6 +213,12 @@ public class CreatureBehaviour : MonoBehaviour {
         creature_rigid.angularDrag = originalAngularDrag;
         creature_rigid.gravityScale = originalGravity;
         isDashing = false;
+        
+        // if the creature didn't leave the platform than restore the jump
+        if (direction.y < 0 && num_of_jumps == 1)
+        {
+            num_of_jumps--;
+        }
         
     }
     
@@ -254,10 +273,15 @@ public class CreatureBehaviour : MonoBehaviour {
         {
             num_of_jumps = 0;
             last_resort_jump = false;
+            jumped = false;
         }
         
         if (other.gameObject.CompareTag("Goal")) {
             if (!isRespawning) {
+                if (Gamepad.current != null)
+                {
+                    Gamepad.current.SetMotorSpeeds(0.1f, 0.1f);
+                }
                 allowMovement = false;
                 eye_animator.enabled = true;
                 eye_animator.SetBool("nextLevel", true);
@@ -275,6 +299,7 @@ public class CreatureBehaviour : MonoBehaviour {
         if (other.gameObject.CompareTag("Magnet")) {
             float zRot = other.gameObject.transform.rotation.eulerAngles.z;
             magnetDown = zRot > 90f && zRot < 270f;
+            creature_rigid.velocity *= 0.2f;
             
             magnetizeTo(other.gameObject, true);
             
@@ -297,7 +322,9 @@ public class CreatureBehaviour : MonoBehaviour {
         }
         if (other.gameObject.CompareTag("Platform"))
         {
-            StartCoroutine(coyote_time());
+            if (jumped){StartCoroutine(coyote_time(0f));}
+            else {StartCoroutine(coyote_time(.1f));}
+            
         }
 
         if (other.gameObject.CompareTag("Magnet")) {
@@ -305,9 +332,9 @@ public class CreatureBehaviour : MonoBehaviour {
         }
     }
     
-    IEnumerator coyote_time()
+    IEnumerator coyote_time(float duration)
     {
-        yield return new WaitForSeconds(.1f);
+        yield return new WaitForSeconds(duration);
         num_of_jumps++;
         last_resort_jump = true;
     }
@@ -329,20 +356,31 @@ public class CreatureBehaviour : MonoBehaviour {
     IEnumerator respawn(String tag)
     {
         gameManager.playSound(MusicControl.SoundFX.Death);
-        
+        if (Gamepad.current != null)
+        {
+            Gamepad.current.SetMotorSpeeds(1.0f, 1.0f);
+        }
+
         gameManager.getCurrentLevel().getRespawnAnimator().SetTrigger("Respawn");
         gameManager.apply_death_effect();
         if (tag == "Bottom") {
             yield return new WaitForSeconds(1.2f);
         }
 
+        eyeSprite.enabled = false;
         gameManager.playSound(MusicControl.SoundFX.Respawn);
         yield return new WaitForSeconds(0.28f);
 
         trail.SetActive(false);
         num_of_jumps = 0;
+        eyeSprite.enabled = true;
         creature_rigid.transform.position = gameManager.getCurrentLevel().getRespawnPosition() 
                                             + new Vector3(0, 0.25f, 0);
+        
+        if (Gamepad.current != null)
+        {
+            Gamepad.current.SetMotorSpeeds(0f, 0f);
+        }
         
         
         trail.SetActive(true);
