@@ -13,8 +13,6 @@ public class ButtonBehaviour : MonoBehaviour {
     private MusicControl musicControl;
 
     private PlayerInput controls;
-
-    // public Slider volController;
     
 
     private void Awake() {
