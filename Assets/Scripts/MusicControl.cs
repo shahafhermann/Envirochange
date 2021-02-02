@@ -28,6 +28,8 @@ public class MusicControl : MonoBehaviour {
     private float transition;
     private float quarterNote;
 
+    private AudioSource[] source;
+
     private void Awake() {
         DontDestroyOnLoad(gameObject);
     }
@@ -35,10 +37,16 @@ public class MusicControl : MonoBehaviour {
     void Start() {
         quarterNote = 60 / bpm;
         transition = quarterNote * transitionTime;
+        Debug.Log(gameObject.transform.GetChild(1));
+        source = gameObject.transform.GetChild(1).GetComponents<AudioSource>();
+        Debug.Log(source.Length);
     }
 
     public void transitionTo(int snapshotIndex) {
-        musicSnapshots[snapshotIndex].TransitionTo(transition);
+        source[snapshotIndex].Stop();
+        source[snapshotIndex].Play();
+        AudioMixerSnapshot snapshot = musicSnapshots[snapshotIndex];
+        snapshot.TransitionTo(transition);
         currentSnapshot = snapshotIndex;
     }
 
