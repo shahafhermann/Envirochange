@@ -17,14 +17,8 @@ public static class SaveSystem {
 
     public static GameData LoadLevel() {
         if (File.Exists(levelPath)) {
-            
-            Debug.Log("THE PATH EXISTS");
-            
             FileStream stream = new FileStream(levelPath, FileMode.Open);
             GameData data = (GameData) formatter.Deserialize(stream);
-            
-            Debug.Log("THE DATA IS: " + data);
-            
             stream.Close();
             return data;
         }
