@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-// 0 = dash, 1 = death, 2 = nextLevel, 3 = respawn, 4 = magneticField, 5 = menuButton
+// 0 = dash, 1 = death, 2 = nextLevel, 3 = respawn, 4 = magneticField, 5 = menuButton, Transition = 6
 public class MusicControl : MonoBehaviour {
 
     public enum SoundFX {
@@ -13,7 +13,8 @@ public class MusicControl : MonoBehaviour {
         CompleteLevel,
         Respawn,
         MagneticField,
-        MenuButton
+        MenuButton,
+        Transition
     }
 
     public static int currentSnapshot = 0;
@@ -52,8 +53,10 @@ public class MusicControl : MonoBehaviour {
 
     IEnumerator _transition()
     {
-        yield return new WaitForSeconds(transition);
         source[currentSnapshot].Stop();
+        playSoundFX(SoundFX.Transition);
+        yield return new WaitForSeconds(transition);
+        fxSource.Stop();
         source[currentSnapshot].Play();
     }
 
@@ -76,6 +79,9 @@ public class MusicControl : MonoBehaviour {
                 break;
             case SoundFX.MenuButton:
                 fxSource.clip = soundFx[5];
+                break;
+            case SoundFX.Transition:
+                fxSource.clip = soundFx[6];       
                 break;
         }
         if (fxSource.isPlaying) {
