@@ -22942,6 +22942,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4535215119008129885}
     - target: {fileID: 4535215118522380862, guid: 885d3c1e030dc4f52ab55c8a92dc2fa9, type: 3}
+      propertyPath: transitionTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4535215118522380862, guid: 885d3c1e030dc4f52ab55c8a92dc2fa9, type: 3}
       propertyPath: soundFx.Array.size
       value: 6
       objectReference: {fileID: 0}
