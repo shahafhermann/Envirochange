@@ -253,6 +253,30 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "EXIT",
+                    "type": "Button",
+                    "id": "a239f30e-12b7-44cf-88f6-260132674b38",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Vol_down",
+                    "type": "Button",
+                    "id": "a05e0402-04c5-430c-a323-1728f4906b44",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Vol_up",
+                    "type": "Button",
+                    "id": "3e444a81-09b9-4f29-abae-63b2757afe99",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -275,6 +299,39 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "ESC",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4099251c-0e6e-41b8-804e-43a90da3e520",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "EXIT",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d0855862-f2bd-42e9-b499-8b0610cd9d13",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Vol_down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b6c7a57a-8bef-4463-9346-8767b045605d",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Vol_up",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

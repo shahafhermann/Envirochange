@@ -266,6 +266,30 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""EXIT"",
+                    ""type"": ""Button"",
+                    ""id"": ""a239f30e-12b7-44cf-88f6-260132674b38"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Vol_down"",
+                    ""type"": ""Button"",
+                    ""id"": ""a05e0402-04c5-430c-a323-1728f4906b44"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Vol_up"",
+                    ""type"": ""Button"",
+                    ""id"": ""3e444a81-09b9-4f29-abae-63b2757afe99"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -288,6 +312,39 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""ESC"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4099251c-0e6e-41b8-804e-43a90da3e520"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""EXIT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d0855862-f2bd-42e9-b499-8b0610cd9d13"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Vol_down"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b6c7a57a-8bef-4463-9346-8767b045605d"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Vol_up"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -332,6 +389,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_ESC = m_UI.FindAction("ESC", throwIfNotFound: true);
+        m_UI_EXIT = m_UI.FindAction("EXIT", throwIfNotFound: true);
+        m_UI_Vol_down = m_UI.FindAction("Vol_down", throwIfNotFound: true);
+        m_UI_Vol_up = m_UI.FindAction("Vol_up", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -431,11 +491,17 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     private readonly InputActionMap m_UI;
     private IUIActions m_UIActionsCallbackInterface;
     private readonly InputAction m_UI_ESC;
+    private readonly InputAction m_UI_EXIT;
+    private readonly InputAction m_UI_Vol_down;
+    private readonly InputAction m_UI_Vol_up;
     public struct UIActions
     {
         private @PlayerInput m_Wrapper;
         public UIActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @ESC => m_Wrapper.m_UI_ESC;
+        public InputAction @EXIT => m_Wrapper.m_UI_EXIT;
+        public InputAction @Vol_down => m_Wrapper.m_UI_Vol_down;
+        public InputAction @Vol_up => m_Wrapper.m_UI_Vol_up;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -448,6 +514,15 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @ESC.started -= m_Wrapper.m_UIActionsCallbackInterface.OnESC;
                 @ESC.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnESC;
                 @ESC.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnESC;
+                @EXIT.started -= m_Wrapper.m_UIActionsCallbackInterface.OnEXIT;
+                @EXIT.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnEXIT;
+                @EXIT.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnEXIT;
+                @Vol_down.started -= m_Wrapper.m_UIActionsCallbackInterface.OnVol_down;
+                @Vol_down.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnVol_down;
+                @Vol_down.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnVol_down;
+                @Vol_up.started -= m_Wrapper.m_UIActionsCallbackInterface.OnVol_up;
+                @Vol_up.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnVol_up;
+                @Vol_up.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnVol_up;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -455,6 +530,15 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @ESC.started += instance.OnESC;
                 @ESC.performed += instance.OnESC;
                 @ESC.canceled += instance.OnESC;
+                @EXIT.started += instance.OnEXIT;
+                @EXIT.performed += instance.OnEXIT;
+                @EXIT.canceled += instance.OnEXIT;
+                @Vol_down.started += instance.OnVol_down;
+                @Vol_down.performed += instance.OnVol_down;
+                @Vol_down.canceled += instance.OnVol_down;
+                @Vol_up.started += instance.OnVol_up;
+                @Vol_up.performed += instance.OnVol_up;
+                @Vol_up.canceled += instance.OnVol_up;
             }
         }
     }
@@ -486,5 +570,8 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     public interface IUIActions
     {
         void OnESC(InputAction.CallbackContext context);
+        void OnEXIT(InputAction.CallbackContext context);
+        void OnVol_down(InputAction.CallbackContext context);
+        void OnVol_up(InputAction.CallbackContext context);
     }
 }

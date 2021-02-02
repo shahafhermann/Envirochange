@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class ButtonBehaviour : MonoBehaviour {
     public Animator transition;
@@ -12,6 +13,8 @@ public class ButtonBehaviour : MonoBehaviour {
     private MusicControl musicControl;
 
     private PlayerInput controls;
+
+    // public Slider volController;
     
 
     private void Awake() {
@@ -29,7 +32,7 @@ public class ButtonBehaviour : MonoBehaviour {
     }
 
     private void Update() {
-        if (controls.Creature.jump.triggered)
+        if (Gamepad.current == null && controls.Creature.jump.triggered)
         {
             if (SceneManager.GetActiveScene().buildIndex == SceneManager.sceneCountInBuildSettings - 1) {
                 restartGame();
@@ -38,11 +41,23 @@ public class ButtonBehaviour : MonoBehaviour {
                 playGame();
             }
         }
-        else if (controls.Creature.dash.triggered)
+
+        if (Gamepad.current != null)
         {
-            exitGame();
+            if (controls.Creature.jump.triggered)
+            {
+                playGame();
+            }
+            else if (controls.Creature.dash.triggered)
+            {
+                continueGame();
+            }
+            else if (controls.UI.EXIT.triggered)
+            {
+                exitGame();
+            }
         }
-        
+
     }
 
     public void playGame() {
