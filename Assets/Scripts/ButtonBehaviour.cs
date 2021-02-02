@@ -9,14 +9,12 @@ public class ButtonBehaviour : MonoBehaviour {
     [Range(0.1f, 2f)]
     public float transitionTime = 0.5f;
 
-    // private AudioSource soundFX;
     private MusicControl musicControl;
 
     private PlayerInput controls;
     
 
     private void Awake() {
-        // soundFX = gameObject.GetComponent<AudioSource>();
         controls = new PlayerInput();
         musicControl = GameObject.Find("SoundManager").GetComponent<MusicControl>();
     }
@@ -55,7 +53,12 @@ public class ButtonBehaviour : MonoBehaviour {
     public void continueGame() {
         GameData data = SaveSystem.LoadLevel();
         musicControl.playSoundFX(MusicControl.SoundFX.MenuButton);
-        StartCoroutine(loadLevel(data.level, data.snapshot));
+        if (data == null) {
+            playGame();
+        }
+        else {
+            StartCoroutine(loadLevel(data.level, data.snapshot));
+        }
     }
 
     public void restartGame() {
