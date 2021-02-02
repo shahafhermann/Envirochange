@@ -22939,7 +22939,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4535215118522380862, guid: 885d3c1e030dc4f52ab55c8a92dc2fa9, type: 3}
       propertyPath: bpm
-      value: 128
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 4535215118522380862, guid: 885d3c1e030dc4f52ab55c8a92dc2fa9, type: 3}
       propertyPath: fxSource

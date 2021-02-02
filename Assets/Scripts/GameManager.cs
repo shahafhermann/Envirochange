@@ -32,10 +32,23 @@ public class GameManager : MonoBehaviour {
     public int nextLevelMusicNumber;
 
     public bool useSounds = false;
+    
+    private PlayerInput controls;
 
     private void Awake() {
         transitionAnimator = GameObject.Find("Crossfade").gameObject.GetComponent<Animator>();
         if (useSounds) musicControl = GameObject.Find("SoundManager").GetComponent<MusicControl>();
+        controls = new PlayerInput();
+    }
+    
+    private void OnEnable()
+    {
+        controls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Disable();
     }
 
     void Start() {
@@ -45,6 +58,13 @@ public class GameManager : MonoBehaviour {
         endPlatformAnimator = levels[curLevel].GetPlatforms()[levels[curLevel].GetPlatforms().Length - 1]
                                 .platform.GetComponent<Animator>();
         death_effect = Camera.main.GetComponent<deathEffect>();
+    }
+
+    private void Update() {
+        if (controls.UI.ESC.triggered) {
+            if (useSounds) musicControl.transitionTo(0);
+            SceneManager.LoadScene(0);
+        }
     }
 
     /**
