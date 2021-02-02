@@ -43,11 +43,18 @@ public class MusicControl : MonoBehaviour {
     }
 
     public void transitionTo(int snapshotIndex) {
-        source[snapshotIndex].Stop();
-        source[snapshotIndex].Play();
+        source[currentSnapshot].Stop();
         AudioMixerSnapshot snapshot = musicSnapshots[snapshotIndex];
         snapshot.TransitionTo(transition);
         currentSnapshot = snapshotIndex;
+        StartCoroutine(_transition());
+    }
+
+    IEnumerator _transition()
+    {
+        yield return new WaitForSeconds(transition);
+        source[currentSnapshot].Stop();
+        source[currentSnapshot].Play();
     }
 
     public void playSoundFX(SoundFX sound) {
