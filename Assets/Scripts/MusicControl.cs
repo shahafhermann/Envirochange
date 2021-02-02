@@ -30,9 +30,17 @@ public class MusicControl : MonoBehaviour {
     private float quarterNote;
 
     private AudioSource[] source;
+    
+    private static MusicControl playerInstance;
 
     private void Awake() {
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad (this);
+         
+        if (playerInstance == null) {
+            playerInstance = this;
+        } else {
+            DestroyObject(gameObject);
+        }
     }
 
     void Start() {
