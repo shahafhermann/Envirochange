@@ -9,14 +9,10 @@ public class Platform {
     public Vector3[] positions;
     public float[] zRotations;
     public GameManager.ChangeType changeType;
-    private Shakeit _shake;
 
     private int curIndex = 0;
-
-    public void Start()
-    {
-        _shake = platform.GetComponent<Shakeit>();
-    } 
+    private Shakeit _shake;
+    
 
     public void move() {
         int maxLength = Mathf.Max(positions.Length, zRotations.Length);
@@ -27,6 +23,7 @@ public class Platform {
             if (curIndex < positions.Length) {  // Change position
                 Vector3 position = positions[curIndex];
                 platform.transform.position = position;
+                if (_shake is null) _shake = platform.GetComponent<Shakeit>();
                 _shake.setPosition(position);
             }
 
