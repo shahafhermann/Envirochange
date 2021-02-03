@@ -3,11 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PlatformBehaviour : MonoBehaviour
 {
     private Collider2D[] platformColliders;
     private Animator transitionAnimator;
+    
     
     public void Start()
     {
@@ -42,5 +44,5 @@ public class PlatformBehaviour : MonoBehaviour
         transitionAnimator.SetTrigger("Start");
         yield return new WaitForSeconds(0f);
     }
-
+    
 }
