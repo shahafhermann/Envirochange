@@ -46,9 +46,7 @@ public class MusicControl : MonoBehaviour {
     void Start() {
         quarterNote = 60 / bpm;
         transition = quarterNote * transitionTime;
-        Debug.Log(gameObject.transform.GetChild(1));
         source = gameObject.transform.GetChild(1).GetComponents<AudioSource>();
-        Debug.Log(source.Length);
     }
 
     public void transitionTo(int snapshotIndex) {

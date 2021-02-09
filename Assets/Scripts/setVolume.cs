@@ -34,7 +34,6 @@ public class setVolume : MonoBehaviour
     {
         if (Gamepad.current != null)
         {
-            Debug.Log(currVal);
             if (controls.UI.Vol_up.triggered && currVal + .1f <= 1f)
             {
                 setLevel(currVal + .1f);

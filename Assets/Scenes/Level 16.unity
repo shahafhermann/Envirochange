@@ -1130,7 +1130,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 488947886}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 655b8e1ada0654441ac23975e3cd197f, type: 2}
   m_CullingMode: 0
@@ -7567,7 +7567,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3173754911764399569, guid: 43ea76872f44447d99403e8fa01d38d1, type: 3}
       propertyPath: useSounds
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3173754911764399569, guid: 43ea76872f44447d99403e8fa01d38d1, type: 3}
       propertyPath: levels.Array.size

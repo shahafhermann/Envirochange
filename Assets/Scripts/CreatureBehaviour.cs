@@ -222,42 +222,6 @@ public class CreatureBehaviour : MonoBehaviour {
         
     }
     
-    IEnumerator dashEffect_option2()
-    {
-        isDashing = true;
-        num_of_jumps++;  
-        dashParticles.Play();
-        
-        Vector2 direction = Vector3.zero;
-        direction += controls.Creature.movement.ReadValue<Vector2>();
-
-        if (direction == Vector2.zero)
-        {
-            direction += Vector2.up;
-        }
-        direction.Normalize();
-        trail.SetActive(true);
-
-        float originalGravity = creature_rigid.gravityScale;
-        float originalDrag = creature_rigid.drag;
-        if (direction.x != 0)
-        {
-            creature_rigid.gravityScale = Single.Epsilon;
-            creature_rigid.drag *= 3f;
-        }
-        creature_rigid.velocity = Vector2.zero;
-        creature_rigid.AddForce(direction * (dashSpeed + 40f), ForceMode2D.Impulse);
-        
-        CameraEffects.ShakeOnce(0.3f, 10f);
-        gameManager.playSound(MusicControl.SoundFX.Dash);
-        yield return new WaitForSeconds(dashTime);
-        creature_rigid.gravityScale = originalGravity;
-        creature_rigid.drag = originalDrag;
-
-        dashParticles.Stop();
-        trail.SetActive(false);
-        isDashing = false;
-    }
 
     private void OnCollisionEnter2D(Collision2D other) {
         if (other.gameObject.CompareTag("Laser")) {
